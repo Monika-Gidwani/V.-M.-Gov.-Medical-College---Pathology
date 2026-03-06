@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Container for the header elements */
+.container1 {
+    display: block;
+    width: 100%;
+    max-width: 100%; /* let the parent (.main-container) control the width */
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0; /* inherit padding from .main-container so no extra horizontal space */
+}
+
+/* Header inner wrapper */
+.header-container1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 10px 0.5rem; /* slightly smaller horizontal padding to avoid overflow */
+    margin-bottom: 0;
+    max-width: 100%; /* let the header fit the parent container */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Logo */
+#Logo {
+    height: clamp(38px, 6vw, 90px); /* Responsive height */
+    width: auto;
+}
+
+/* Title and subtitle */
+.header-container1 h1 {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    margin: 0;
+    color: black;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.header-container1 p {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    margin: 0;
+    color: black;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.no-wrap-text {
+    white-space: nowrap !important;
+    margin-left: 0.5rem;
+}
+
+/* Group the logo and text visually — keep them together on the left */
+.header-container1 img,
+.header-container1 .sizes {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.header-container1 .sizes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 0.5rem;
+}
+
+/* Container for navbar */
+.container {
+    display: flex;
+    justify-content: flex-end; /* push hamburger right */
+    align-items: center;
+    background: #FFFFFF;
+    z-index: 10;
+    min-height: 60px;
+    width: auto;
+    margin-left: auto; /* push the nav group to the far right */
+    margin-right: 0.5vw;
+    align-self: flex-end;
+}
+
+/* Navbar styling */
+.navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0 0.75rem; /* align with main container */
+        box-sizing: border-box;
+}
+
+/* Reduce spacing and font-size for nav items on mid-size screens to avoid overflow */
+@media (max-width: 900px) {
+    .menu a {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+    .menu ul {
+        gap: 6px;
+    }
+}
+
+/* Menu */
+.menu {
+    flex: 0 1 auto; /* allow the menu to shrink instead of forcing overflow */
+    width: auto;
+    transform: none;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden; /* hide overflowing links if space is tight */
+}
+
+.menu > ul > li {
+    display: inline-block;
+    flex: 0 1 auto; /* allow each item to shrink */
+}
+
+.menu a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 10px;
+    display: block;
+    line-height: 1.2;
+    font-size: clamp(14px, 1.2vw, 15px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu a:hover {
+    color: #29B6EE;
+}
+
+.header-right .open-menu-btn {
+    display: none;
+}
+
+.menu .close-menu-btn {
+    display: none;
+}
+
+.header-container1,
+.container1 {
+  overflow: visible;
+}
+
+/* Mid-size tweak: slightly reduce logo/title on narrower viewports to give nav room */
+@media (max-width: 900px) {
+    #Logo { height: clamp(28px, 6vw, 48px); }
+    .header-container1 h1 { font-size: 1rem; margin-left: 0.5rem; }
+    .header-container1 p { font-size: 0.8rem; margin-left: 0.5rem; }
+}
+
+
+/* Mobile/Tablet Menu Adjustments (max-width: 840px)
+   Note: legacy code referenced 991px; the site uses 768px as the intended mobile breakpoint.
+*/
+
+/* Tablet width adjustment */
+@media (min-width: 600px) and (max-width: 840px) {
+    .menu {
+        width: 60vw;
+        max-width: 320px;
+    }
+
+    /* Slightly increase the logo in this range so it reads better on tablets */
+    #Logo { height: clamp(70px, 12vw, 90px); }
+
+    .container {
+        margin-left: auto; /* keep nav flush to the right edge */
+        margin-right: 0.5vw;
+        text-align: end;
+    }
+}
+
+/* Expand hamburger/menu behavior to include 600px–840px so the hamburger appears there
+   while preserving header stacking only below 600px. */
+@media (max-width: 840px) {
+    .header-container {
+        position: relative;
+        z-index: 20;
+    }
+
+    .menu {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 75vw;
+        max-width: 340px;
+        height: 100vh;
+        background: #EBEBEB;
+        border-radius: 0 12px 12px 0;
+        box-shadow: 2px 0 22px rgba(0,0,40,0.13);
+        flex-direction: column;
+        padding-top: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 9999;
+        display: block;
+    }
+
+    .menu.open {
+        transform: translateX(0);
+    }
+
+    .menu .head {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 16px 18px;
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .menu .close-menu-btn {
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        color: #000;
+        cursor: pointer;
+        outline: none;
+        display: block;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        margin: 0;
+        padding: 12px 0;
+    }
+
+    .menu > ul > li {
+        display: block;
+        width: 100%;
+    }
+
+    .menu a {
+        padding: 14px 20px;
+        font-size: clamp(15px, 2vw, 18px);
+        font-weight: 500;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        margin: 0 10px 2px 10px;
+        border-radius: 7px;
+        transition: background 0.25s;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+        color: #29B6EE;
+    }
+
+    .header-right .open-menu-btn {
+        position: relative;
+        color: #000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 44px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        margin-left: auto;
+        padding: 10px;
+        z-index: 11;
+    }
+
+    .header-right .open-menu-btn .line {
+        height: 2px;
+        width: 30px;
+        background-color: hsl(0, 0%, 0%);
+        position: absolute;
+    }
+
+    .header-right .open-menu-btn .line-1 {
+        transform: translateY(-8px);
+    }
+
+    .header-right .open-menu-btn .line-3 {
+        transform: translateY(8px);
+    }
+
+    #Logo {
+        height: clamp(32px, 20vw, 38px);
+    }
+
+    .container {
+        margin-left: auto; /* ensure nav stays right-aligned up to 840px */
+        margin-right: 0.5vw;
+        align-self: flex-end;
+    }
+
+    .navbar {
+        padding: 0 10px;
+        background-color: #EBEBEB;
+    }
+}
+
+/* Keep header stacked (column) only on small devices under 600px */
+@media (max-width: 600px) {
+    .header-container1 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-container1 h1 {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+    }
+
+    .header-container1 p {
+        font-size: clamp(0.8rem, 3.5vw, 1rem);
+    }
+}

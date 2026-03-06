@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16Path: A VMGMC Initiative</title>
+  <link rel="stylesheet" href="css/header.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<body>
+
+  <div class="main-container">
+
+    <div id="header"></div>
+    <!-- <div id="navbar"></div> -->
+
+    <section class="section">
+      <img src="Images/vmgmcimg1.jpg" class="img-head">
+    </section>
+
+    <p class="url"><a href="#">Home </a> » Museum</p>
+
+    <section class="main-heading">
+      <h2>Museum</h2>
+    </section>
+
+    <section class="section">
+      <img src="images/patient.png" alt="Clinical Scenario Icon" class="heading-icon">
+      <h2>Clinical Scenario</h2>
+      <div class="content">
+        <p><strong>History:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+        <p><strong>Clinical Examination:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+        <p><strong>Investigations:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+      </div>
+      
+    </section>
+
+    <section class="section">
+      <img src="images/VM Logo - Copy.jpg" alt="College Logo" class="heading-icon">
+      <h2>16Path Gallery</h2>
+
+      <div class="cards">
+        <div class="box-container">
+          <div class="titles">
+            <h2>Renal Cell Carcinoma</h2>
+            <div class="label">
+              <img src="images/VM Logo - Copy.jpg" alt="College Logo" class="heading-icon">
+              <h2>16Path</h2>
+            </div>
+          </div>
+          
+          <img src="images/patient.png" alt="Clinical Scenario Icon" class="heading-icon">
+          <h2>Clinical Scenario</h2>
+          <div class="content">
+            <p><strong>History:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+            <p><strong>Clinical Examination:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+            <p><strong>Investigations:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+          </div>
+          
+          <div class="img-container">
+            <div class="flip-card" onclick="flipImage(this)">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="Images/grossimage1.jpeg" alt="Gross Image 1">
+                </div>
+                <div class="flip-card-back">
+                  <h3>Gross Image</h3>
+                  <p>Pathology Museum</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="zoom-group" data-group="zoomables-1">
+
+              <div class="zoom visible">
+                <img src="images/image.png"  alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-1',0)">
+              </div>
+
+              <div class="zoom hidden"><img src="images/diagnosis.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="images/differetials.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+
+            </div>
+
+            <div class="zoom-group" data-group="zoomables-2">
+
+              <div class="zoom visible">
+                <img src="images/image.png" alt="Cytology 2" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-2',0)">
+              </div>
+
+              <div class="zoom hidden"><img src="images/gross specimen.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="images/grossimage1.jpeg" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+
+            </div>
+
+            <div class="video-box">
+              <iframe src="https://www.youtube.com/embed/u-s4oOwh4kQ?si=9UOaHjIFRQlqOgRV"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                        referrerpolicy="strict-origin-when-cross-origin" onclick="openVideoPopup(this)">
+              </iframe>
+            </div>
+          </div>
+          
+          <img src="images/microscope (1).png" alt=" Final Diagnosis Icon" class="heading-icon">
+          <h2>Final Diagnosis</h2>
+          <div class="content">
+            <p>Present an indepth diagnosis and if possible the staging and grading wherever possible.</p>
+            <br>
+          </div>
+          <div class="buttons">
+            <div class="content-wrapper">
+                <div class="tabs">
+                    <div class="list-group" id="list-tab">
+                        <a class="list-group-item active" id="SampleSpecimen-1-1-list" href="#Etiology-1">Etiology</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-2-list" href="#Pathogenesis-1">Pathogenesis</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-3-list" href="#Pecularity-1">Pecularity</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-4-list" href="#Differentials-1">Differentials</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-5-list" href="#Investigations-1">Investigations</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-6-list" href="#Protocols-1">Protocols</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-7-list" href="#Clinical-Pearls-1">Clinical Pearls</a>
+                        <a class="list-group-item" id="SampleSpecimen-1-8-list" href="#Quiz-MCQ-1">Quiz/MCQ</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-9-list" href="#Credits-1">Credits</a>
+                    </div>
+                </div>
+
+                <div class="tab-content-wrapper">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane active" id="Etiology-1">
+                          <ul>
+                            <li><strong>Etiology 1:</strong> List the cause of the disease with epidemiological details.</li>
+                            <li><strong>Etiology 2:</strong> List the cause of the disease with epidemiological details .</li>
+                            <li><strong>Etiology 3:</strong> List the cause of the disease with epidemiological details .</li>
+                          </ul>            
+                        </div>
+                
+                        <div class="tab-pane" id="Pathogenesis-1">
+                          <div class="content">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</div>
+                        </div>
+
+                        <div class="tab-pane" id="Pecularity-1">
+                          <div class="content">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="Differentials-1">
+                          <ul>
+                            <li><strong>Differentials 1:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Differentials 2:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Differentials 3:</strong> Preset classical clinical features of the disease here.</li>
+                          </ul>
+                        </div>
+
+                      <div class="tab-pane" id="Investigations-1">
+                        <ul>
+                            <li><strong>Investigations 1:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Investigations 2:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Investigations 3:</strong> Preset classical clinical features of the disease here.</li>
+                          </ul>
+                      </div>
+
+                      <div class="tab-pane" id="Protocols-1">
+                        <a href=""><img src="/images/pdf.png" alt="pdf icon"  class="heading-icon">Protocols</a><br><br>
+                        <a href=""><img src="/images/pdf.png" alt="pdf icon"  class="heading-icon">Protocols</a>
+                      </div>
+
+                      <div class="tab-pane" id="Clinical-Pearls-1">
+                        <ul>
+                          <li><strong>Clinical pearl 1:</strong> Preset classical clinical features of the disease here.</li>
+                          <li><strong>Clinical pearl 2:</strong> Preset classical clinical features of the disease here.</li>
+                          <li><strong>Clinical pearl 3:</strong> Preset classical clinical features of the disease here.</li>
+                        </ul>
+                      </div>
+
+                      <div class="tab-pane" id="Quiz-MCQ-1">
+                        <p>Here is some random text that can be used for a multiple-choice question, either as part of the question stem or as a plausible distractor</p>
+                        <ul class="mcq-options">
+                          <li>A. Option 1</li>
+                          <li>B. Option 2</li>
+                          <li>C. Option 3</li>
+                          <li>D. Option 4</li>
+                        </ul>
+                      </div>
+                      
+                      <div class="tab-pane" id="Credits-1">
+                        <div class="content">
+                          <p><strong>Further Readings:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                          <p><strong>Refrences:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                          <p><strong>Contributors:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-container">
+          <div class="titles">
+            <h2>Renal Cell Carcinoma</h2>
+            <div class="label">
+              <img src="images/VM Logo - Copy.jpg" alt="College Logo" class="heading-icon">
+              <h2>16Path</h2>
+            </div>
+          </div>
+          
+          <img src="images/patient.png" alt="Clinical Scenario Icon" class="heading-icon">
+          <h2>Clinical Scenario</h2>
+          <div class="content">
+            <p><strong>History:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+            <p><strong>Clinical Examination:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+            <p><strong>Investigations:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+          </div>
+          
+          <div class="img-container">
+            <div class="flip-card" onclick="flipImage(this)">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="Images/grossimage1.jpeg" alt="Gross Image 1">
+                </div>
+                <div class="flip-card-back">
+                  <h3>Gross Image</h3>
+                  <p>Pathology Museum</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="zoom-group" data-group="zoomables-3">
+
+              <div class="zoom visible">
+                <img src="images/image.png"  alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-3',0)">
+              </div>
+
+              <div class="zoom hidden"><img src="images/diagnosis.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="images/differetials.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+
+            </div>
+
+            <div class="zoom-group" data-group="zoomables-4">
+
+              <div class="zoom visible">
+                <img src="images/image.png" alt="Cytology 2" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-4',0)">
+              </div>
+
+              <div class="zoom hidden"><img src="images/gross specimen.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="images/grossimage1.jpeg" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+
+            </div>
+
+            <div class="video-box">
+              <iframe src="https://www.youtube.com/embed/u-s4oOwh4kQ?si=9UOaHjIFRQlqOgRV"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                        referrerpolicy="strict-origin-when-cross-origin" onclick="openVideoPopup(this)">
+              </iframe>
+            </div>
+          </div>
+          
+          <img src="images/microscope (1).png" alt=" Final Diagnosis Icon" class="heading-icon">
+          <h2>Final Diagnosis</h2>
+          <div class="content">
+            <p>Present an indepth diagnosis and if possible the staging and grading wherever possible.</p>
+            <br>
+          </div>
+          <div class="buttons">
+            <div class="content-wrapper">
+                <div class="tabs">
+                    <div class="list-group" id="list-tab">
+                        <a class="list-group-item active" id="SampleSpecimen-1-1-list" href="#Etiology-1">Etiology</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-2-list" href="#Pathogenesis-1">Pathogenesis</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-3-list" href="#Pecularity-1">Pecularity</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-4-list" href="#Differentials-1">Differentials</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-5-list" href="#Investigations-1">Investigations</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-6-list" href="#Protocols-1">Protocols</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-7-list" href="#Clinical-Pearls-1">Clinical Pearls</a>
+                        <a class="list-group-item" id="SampleSpecimen-1-8-list" href="#Quiz-MCQ-1">Quiz/MCQ</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-9-list" href="#Credits-1">Credits</a>
+                    </div>
+                </div>
+
+                <div class="tab-content-wrapper">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane active" id="Etiology-1">
+                          <ul>
+                            <li><strong>Etiology 1:</strong> List the cause of the disease with epidemiological details.</li>
+                            <li><strong>Etiology 2:</strong> List the cause of the disease with epidemiological details .</li>
+                            <li><strong>Etiology 3:</strong> List the cause of the disease with epidemiological details .</li>
+                          </ul>            
+                        </div>
+                
+                        <div class="tab-pane" id="Pathogenesis-1">
+                          <div class="content">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</div>
+                        </div>
+
+                        <div class="tab-pane" id="Pecularity-1">
+                          <div class="content">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="Differentials-1">
+                          <ul>
+                            <li><strong>Differentials 1:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Differentials 2:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Differentials 3:</strong> Preset classical clinical features of the disease here.</li>
+                          </ul>
+                        </div>
+
+                      <div class="tab-pane" id="Investigations-1">
+                        <ul>
+                            <li><strong>Investigations 1:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Investigations 2:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Investigations 3:</strong> Preset classical clinical features of the disease here.</li>
+                          </ul>
+                      </div>
+
+                      <div class="tab-pane" id="Protocols-1">
+                        <a href=""><img src="/images/pdf.png" alt="pdf icon"  class="heading-icon">Protocols</a><br><br>
+                        <a href=""><img src="/images/pdf.png" alt="pdf icon"  class="heading-icon">Protocols</a>
+                      </div>
+
+                      <div class="tab-pane" id="Clinical-Pearls-1">
+                        <ul>
+                          <li><strong>Clinical pearl 1:</strong> Preset classical clinical features of the disease here.</li>
+                          <li><strong>Clinical pearl 2:</strong> Preset classical clinical features of the disease here.</li>
+                          <li><strong>Clinical pearl 3:</strong> Preset classical clinical features of the disease here.</li>
+                        </ul>
+                      </div>
+
+                      <div class="tab-pane" id="Quiz-MCQ-1">
+                        <p>Here is some random text that can be used for a multiple-choice question, either as part of the question stem or as a plausible distractor</p>
+                        <ul class="mcq-options">
+                          <li>A. Option 1</li>
+                          <li>B. Option 2</li>
+                          <li>C. Option 3</li>
+                          <li>D. Option 4</li>
+                        </ul>
+                      </div>
+                      
+                      <div class="tab-pane" id="Credits-1">
+                        <div class="content">
+                          <p><strong>Further Readings:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                          <p><strong>Refrences:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                          <p><strong>Contributors:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-container">
+          <div class="titles">
+            <h2>Renal Cell Carcinoma</h2>
+            <div class="label">
+              <img src="images/VM Logo - Copy.jpg" alt="College Logo" class="heading-icon">
+              <h2>16Path</h2>
+            </div>
+          </div>
+          
+          <img src="images/patient.png" alt="Clinical Scenario Icon" class="heading-icon">
+          <h2>Clinical Scenario</h2>
+          <div class="content">
+            <p><strong>History:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+            <p><strong>Clinical Examination:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+            <p><strong>Investigations:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+          </div>
+          
+          <div class="img-container">
+            <div class="flip-card" onclick="flipImage(this)">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="Images/grossimage1.jpeg" alt="Gross Image 1">
+                </div>
+                <div class="flip-card-back">
+                  <h3>Gross Image</h3>
+                  <p>Pathology Museum</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="zoom-group" data-group="zoomables-5">
+
+              <div class="zoom visible">
+                <img src="images/image.png"  alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-5',0)">
+              </div>
+
+              <div class="zoom hidden"><img src="images/diagnosis.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="images/differetials.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+
+            </div>
+
+            <div class="zoom-group" data-group="zoomables-6">
+
+              <div class="zoom visible">
+                <img src="images/image.png" alt="Cytology 2" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-6',0)">
+              </div>
+
+              <div class="zoom hidden"><img src="images/gross specimen.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="images/grossimage1.jpeg" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+
+            </div>
+
+            <div class="video-box">
+              <iframe src="https://www.youtube.com/embed/u-s4oOwh4kQ?si=9UOaHjIFRQlqOgRV"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                        referrerpolicy="strict-origin-when-cross-origin" onclick="openVideoPopup(this)">
+              </iframe>
+            </div>
+          </div>
+          
+          <img src="images/microscope (1).png" alt=" Final Diagnosis Icon" class="heading-icon">
+          <h2>Final Diagnosis</h2>
+          <div class="content">
+            <p>Present an indepth diagnosis and if possible the staging and grading wherever possible.</p>
+            <br>
+          </div>
+          <div class="buttons">
+            <div class="content-wrapper">
+                <div class="tabs">
+                    <div class="list-group" id="list-tab">
+                        <a class="list-group-item active" id="SampleSpecimen-1-1-list" href="#Etiology-1">Etiology</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-2-list" href="#Pathogenesis-1">Pathogenesis</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-3-list" href="#Pecularity-1">Pecularity</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-4-list" href="#Differentials-1">Differentials</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-5-list" href="#Investigations-1">Investigations</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-6-list" href="#Protocols-1">Protocols</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-7-list" href="#Clinical-Pearls-1">Clinical Pearls</a>
+                        <a class="list-group-item" id="SampleSpecimen-1-8-list" href="#Quiz-MCQ-1">Quiz/MCQ</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-9-list" href="#Credits-1">Credits</a>
+                    </div>
+                </div>
+
+                <div class="tab-content-wrapper">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane active" id="Etiology-1">
+                          <ul>
+                            <li><strong>Etiology 1:</strong> List the cause of the disease with epidemiological details.</li>
+                            <li><strong>Etiology 2:</strong> List the cause of the disease with epidemiological details .</li>
+                            <li><strong>Etiology 3:</strong> List the cause of the disease with epidemiological details .</li>
+                          </ul>            
+                        </div>
+                
+                        <div class="tab-pane" id="Pathogenesis-1">
+                          <div class="content">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</div>
+                        </div>
+
+                        <div class="tab-pane" id="Pecularity-1">
+                          <div class="content">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="Differentials-1">
+                          <ul>
+                            <li><strong>Differentials 1:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Differentials 2:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Differentials 3:</strong> Preset classical clinical features of the disease here.</li>
+                          </ul>
+                        </div>
+
+                      <div class="tab-pane" id="Investigations-1">
+                        <ul>
+                            <li><strong>Investigations 1:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Investigations 2:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Investigations 3:</strong> Preset classical clinical features of the disease here.</li>
+                          </ul>
+                      </div>
+
+                      <div class="tab-pane" id="Protocols-1">
+                        <a href=""><img src="/images/pdf.png" alt="pdf icon"  class="heading-icon">Protocols</a><br><br>
+                        <a href=""><img src="/images/pdf.png" alt="pdf icon"  class="heading-icon">Protocols</a>
+                      </div>
+
+                      <div class="tab-pane" id="Clinical-Pearls-1">
+                        <ul>
+                          <li><strong>Clinical pearl 1:</strong> Preset classical clinical features of the disease here.</li>
+                          <li><strong>Clinical pearl 2:</strong> Preset classical clinical features of the disease here.</li>
+                          <li><strong>Clinical pearl 3:</strong> Preset classical clinical features of the disease here.</li>
+                        </ul>
+                      </div>
+
+                      <div class="tab-pane" id="Quiz-MCQ-1">
+                        <p>Here is some random text that can be used for a multiple-choice question, either as part of the question stem or as a plausible distractor</p>
+                        <ul class="mcq-options">
+                          <li>A. Option 1</li>
+                          <li>B. Option 2</li>
+                          <li>C. Option 3</li>
+                          <li>D. Option 4</li>
+                        </ul>
+                      </div>
+                      
+                      <div class="tab-pane" id="Credits-1">
+                        <div class="content">
+                          <p><strong>Further Readings:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                          <p><strong>Refrences:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                          <p><strong>Contributors:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-container">
+          <div class="titles">
+            <h2>Renal Cell Carcinoma</h2>
+            <div class="label">
+              <img src="images/VM Logo - Copy.jpg" alt="College Logo" class="heading-icon">
+              <h2>16Path</h2>
+            </div>
+          </div>
+          
+          <img src="images/patient.png" alt="Clinical Scenario Icon" class="heading-icon">
+          <h2>Clinical Scenario</h2>
+          <div class="content">
+            <p><strong>History:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+            <p><strong>Clinical Examination:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+            <p><strong>Investigations:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+          </div>
+          
+          <div class="img-container">
+            <div class="flip-card" onclick="flipImage(this)">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="Images/grossimage1.jpeg" alt="Gross Image 1">
+                </div>
+                <div class="flip-card-back">
+                  <h3>Gross Image</h3>
+                  <p>Pathology Museum</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="zoom-group" data-group="zoomables-7">
+
+              <div class="zoom visible">
+                <img src="images/image.png"  alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-7',0)">
+              </div>
+
+              <div class="zoom hidden"><img src="images/diagnosis.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="images/differetials.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+
+            </div>
+
+            <div class="zoom-group" data-group="zoomables-8">
+
+              <div class="zoom visible">
+                <img src="images/image.png" alt="Cytology 2" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-9',0)">
+              </div>
+
+              <div class="zoom hidden"><img src="images/gross specimen.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="images/grossimage1.jpeg" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+
+            </div>
+
+            <div class="video-box">
+              <iframe src="https://www.youtube.com/embed/u-s4oOwh4kQ?si=9UOaHjIFRQlqOgRV"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                        referrerpolicy="strict-origin-when-cross-origin" onclick="openVideoPopup(this)">
+              </iframe>
+            </div>
+          </div>
+          
+          <img src="images/microscope (1).png" alt=" Final Diagnosis Icon" class="heading-icon">
+          <h2>Final Diagnosis</h2>
+          <div class="content">
+            <p>Present an indepth diagnosis and if possible the staging and grading wherever possible.</p>
+            <br>
+          </div>
+          <div class="buttons">
+            <div class="content-wrapper">
+                <div class="tabs">
+                    <div class="list-group" id="list-tab">
+                        <a class="list-group-item active" id="SampleSpecimen-1-1-list" href="#Etiology-1">Etiology</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-2-list" href="#Pathogenesis-1">Pathogenesis</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-3-list" href="#Pecularity-1">Pecularity</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-4-list" href="#Differentials-1">Differentials</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-5-list" href="#Investigations-1">Investigations</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-6-list" href="#Protocols-1">Protocols</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-7-list" href="#Clinical-Pearls-1">Clinical Pearls</a>
+                        <a class="list-group-item" id="SampleSpecimen-1-8-list" href="#Quiz-MCQ-1">Quiz/MCQ</a> 
+                        <a class="list-group-item" id="SampleSpecimen-1-9-list" href="#Credits-1">Credits</a>
+                    </div>
+                </div>
+
+                <div class="tab-content-wrapper">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane active" id="Etiology-1">
+                          <ul>
+                            <li><strong>Etiology 1:</strong> List the cause of the disease with epidemiological details.</li>
+                            <li><strong>Etiology 2:</strong> List the cause of the disease with epidemiological details .</li>
+                            <li><strong>Etiology 3:</strong> List the cause of the disease with epidemiological details .</li>
+                          </ul>            
+                        </div>
+                
+                        <div class="tab-pane" id="Pathogenesis-1">
+                          <div class="content">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</div>
+                        </div>
+
+                        <div class="tab-pane" id="Pecularity-1">
+                          <div class="content">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="Differentials-1">
+                          <ul>
+                            <li><strong>Differentials 1:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Differentials 2:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Differentials 3:</strong> Preset classical clinical features of the disease here.</li>
+                          </ul>
+                        </div>
+
+                      <div class="tab-pane" id="Investigations-1">
+                        <ul>
+                            <li><strong>Investigations 1:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Investigations 2:</strong> Preset classical clinical features of the disease here.</li>
+                            <li><strong>Investigations 3:</strong> Preset classical clinical features of the disease here.</li>
+                          </ul>
+                      </div>
+
+                      <div class="tab-pane" id="Protocols-1">
+                        <a href=""><img src="/images/pdf.png" alt="pdf icon"  class="heading-icon">Protocols</a><br><br>
+                        <a href=""><img src="/images/pdf.png" alt="pdf icon"  class="heading-icon">Protocols</a>
+                      </div>
+
+                      <div class="tab-pane" id="Clinical-Pearls-1">
+                        <ul>
+                          <li><strong>Clinical pearl 1:</strong> Preset classical clinical features of the disease here.</li>
+                          <li><strong>Clinical pearl 2:</strong> Preset classical clinical features of the disease here.</li>
+                          <li><strong>Clinical pearl 3:</strong> Preset classical clinical features of the disease here.</li>
+                        </ul>
+                      </div>
+
+                      <div class="tab-pane" id="Quiz-MCQ-1">
+                        <p>Here is some random text that can be used for a multiple-choice question, either as part of the question stem or as a plausible distractor</p>
+                        <ul class="mcq-options">
+                          <li>A. Option 1</li>
+                          <li>B. Option 2</li>
+                          <li>C. Option 3</li>
+                          <li>D. Option 4</li>
+                        </ul>
+                      </div>
+                      
+                      <div class="tab-pane" id="Credits-1">
+                        <div class="content">
+                          <p><strong>Further Readings:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                          <p><strong>Refrences:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                          <p><strong>Contributors:</strong> The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    
+    </section>
+
+    <section class="section">
+      <img src="images/patient.png" alt="Clinical Scenario Icon" class="heading-icon">
+      <h2>Disclaimer</h2>
+      
+      <div class="content">
+        <p>A 55-year-old male presents with weight loss, fatigue, and a persistent cough lasting more than 3 months. A 55-year-old male presents with weight loss, fatigue, and a persistent cough lasting more than 3 months. A 55-year-old male presents with weight loss, fatigue, and a persistent cough lasting more than 3 months. A 55-year-old male presents with weight loss, fatigue, and a persistent cough lasting more than 3 months.</p>
+      </div>
+    </section>
+
+
+    <div class="modal">
+      <span class="close" onclick="closePop()">×</span>
+
+      <!-- NEW: navigation arrows -->
+      <span class="nav-arrow prev" onclick="changeImage(-1)">◄</span>
+      <span class="nav-arrow next" onclick="changeImage(1)">►</span>
+
+      <div class="zoom-wrapper">
+        <figure class="image-figure">
+          <img src="" alt="">
+          <figcaption class="modal-caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+
+  </div>
+  
+  
+
+  <script src="Javascript/header.js"></script>
+  <!-- <script src="Javascript/navbar.js"></script> -->
+  <script src="Javascript/footer.js"></script>
+  <script src="Javascript/script.js"></script>
+</body>
+</html>
