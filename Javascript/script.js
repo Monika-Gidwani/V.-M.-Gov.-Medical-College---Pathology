@@ -169,62 +169,29 @@ function updateArrows() {
   if (nextBtn) nextBtn.style.display = show ? 'block' : 'none';
 }
 
-// For Tabs
+// Scoped Tabs for each section
 document.addEventListener('DOMContentLoaded', function () {
-    const tabs = document.querySelectorAll('.list-group-item');
-    const tabPanes = document.querySelectorAll('.tab-pane');
+    document.querySelectorAll('.box-container[data-section]').forEach(sectionEl => {
+        const tabs = sectionEl.querySelectorAll('.list-group-item');
+        const tabPanes = sectionEl.querySelectorAll('.tab-pane');
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function (e) {
-            e.preventDefault();
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function (e) {
+                e.preventDefault();
 
-            // Remove active class from all tabs
-            tabs.forEach(t => t.classList.remove('active'));
-            // Add active class to the clicked tab
-            this.classList.add('active');
+                // Remove active class from tabs in this section only
+                tabs.forEach(t => t.classList.remove('active'));
+                // Add active class to the clicked tab
+                this.classList.add('active');
 
-            // Hide all tab panes
-            tabPanes.forEach(pane => pane.classList.remove('active'));
-            // Show the corresponding tab pane
-            const target = document.querySelector(this.getAttribute('href'));
-            target.classList.add('active');
+                // Hide tab panes in this section only
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+                // Show the corresponding tab pane
+                const target = sectionEl.querySelector(this.getAttribute('href'));
+                if (target) target.classList.add('active');
+            });
         });
     });
 });
 
-// Select all the tabs and content divs
-const tabs = document.querySelectorAll('.tab');
-const contents = document.querySelectorAll('.content');
 
-// Function to clear active classes and hide all content
-function clearActiveClasses() {
-    tabs.forEach(tab => tab.classList.remove('active'));
-    contents.forEach(content => content.style.display = 'none');
-}
-
-// Function to activate the clicked tab and show the corresponding content
-function activateTab(tab) {
-    const targetId = tab.getAttribute('data-target'); // Get the target content ID
-
-    // Clear previous active states
-    clearActiveClasses();
-
-    // Activate the clicked tab
-    tab.classList.add('active');
-
-    // Show the corresponding content
-    document.querySelector(targetId).style.display = 'block';
-}
-
-// Add click event listeners to all tabs
-tabs.forEach(tab => {
-    tab.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default link behavior
-        activateTab(this); // Activate the clicked tab
-    });
-});
-
-// Initialize the first tab as active (in case JavaScript loads late)
-document.addEventListener('DOMContentLoaded', () => {
-    activateTab(document.querySelector('.tab.active'));
-});

@@ -13,12 +13,36 @@ if (!headerElement) {
     .catch((err) => console.error('Failed to load header.html:', err));
 }
 
-// Fallback: in case header markup is already present server-side, attach on DOMContentLoaded.
-document.addEventListener('DOMContentLoaded', () => {
-  // Try to attach if header markup was already present server-side. attachHeaderEventListeners
-  // returns true when it found the menu/buttons and attached listeners.
-  attachHeaderEventListeners();
-});
+// Robust header attachment - retry until elements exist
+function attachHeaderListenersRobust() {
+  requestAnimationFrame(() => {
+    if (attachHeaderEventListeners()) {
+      console.log('Header listeners attached');
+    } else {
+      setTimeout(attachHeaderListenersRobust, 100);
+    }
+  });
+}
+
+// After fetch
+if (!headerElement) {
+  console.warn('No #header element found in document — header import skipped.');
+} else {
+  fetch("header.html")
+    .then((response) => response.text())
+    .then((html) => {
+      headerElement.innerHTML = html;
+      attachHeaderListenersRobust();
+    })
+    .catch((err) => {
+      console.error('Failed to load header.html:', err);
+      attachHeaderListenersRobust(); // try on existing content
+    });
+}
+
+// Initial try and window load fallback
+document.addEventListener('DOMContentLoaded', attachHeaderListenersRobust);
+window.addEventListener('load', attachHeaderListenersRobust);
 
 function attachHeaderEventListeners() {
   const menu = document.querySelector('.menu');
