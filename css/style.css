@@ -181,7 +181,7 @@ p, strong, li, a, .caption, .flip-card-back p {
    ========================================================= */
 
 .flip-card {
-    width: 13vw;
+    width: clamp(100px, 13vw, 200px);
     height: auto;
     aspect-ratio: 4 / 3;
     cursor: pointer;
@@ -202,7 +202,7 @@ p, strong, li, a, .caption, .flip-card-back p {
 }
 
 .flip-card-front, .flip-card-back {
-    width: 13vw;
+    width: clamp(100px, 13vw, 200px);
     height: auto;
     aspect-ratio: 4 / 3;
     backface-visibility: hidden;
@@ -260,7 +260,7 @@ p, strong, li, a, .caption, .flip-card-back p {
 }
 
 .zoom img {
-    max-width: 13vw;
+    max-width: clamp(100px, 13vw, 200px);
     aspect-ratio: 4 / 3;
     border: 1px solid #ccc;
     cursor: zoom-in;
@@ -376,7 +376,7 @@ p, strong, li, a, .caption, .flip-card-back p {
 
 
 .video-box {
-    width: 13vw;
+    width: clamp(100px, 13vw, 200px);
     aspect-ratio: 4 / 3;
     padding: 1vh;
     border: 1px solid #ccc;
@@ -557,8 +557,17 @@ li a:hover {
     text-decoration: underline;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 767px) {
+/* =========================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================= */
+
+/* ── Tablet: 481px – 767px ─────────────────────────────── */
+@media (min-width: 481px) and (max-width: 767px) {
+    .main-container {
+        margin: 2vw auto;
+        padding: 0.5rem;
+    }
+
     .buttons {
         padding: 10px;
     }
@@ -569,7 +578,7 @@ li a:hover {
 
     .tabs {
         margin-right: 0;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
     }
 
     .tab-content-wrapper {
@@ -580,28 +589,178 @@ li a:hover {
         font-size: calc(1.1rem + .5vw);
     }
 
-    .cards .box-container {
-        width: 100%;
-    }
-
-    .cards .flip-card {
-        width: 100%;
-    }
-
-    .cards .video-box {
-        width: 100%;
-    }
-
-    .cards .zoom {
-        width: 100%;
-    }
-
+    /* Card layout: full-width boxes on tablet */
     .cards {
-        gap: 4vw;
-        
+        gap: 3vw;
+        flex-direction: column;
+    }
+
+    .cards .box-container,
+    .box-container {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    /* Image row items sized for tablet */
+    .flip-card,
+    .flip-card-front,
+    .flip-card-back {
+        width: clamp(110px, 20vw, 150px);
+    }
+
+    .zoom img {
+        max-width: clamp(110px, 20vw, 150px);
+    }
+
+    .video-box {
+        width: clamp(110px, 20vw, 150px);
+    }
+
+    .img-container {
+        gap: 2vw;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    /* Modal image sizing */
+    .image-figure,
+    .image-figure img {
+        max-width: 85vw;
+    }
+
+    .image-figure img {
+        max-height: 55vh;
     }
 }
 
+/* ── Mobile: ≤ 480px ────────────────────────────────────── */
+@media (max-width: 480px) {
+    .main-container {
+        margin: 1vw auto;
+        padding: 0.4rem;
+    }
+
+    .section .content {
+        margin-left: 0.5vw;
+    }
+
+    .section .content p {
+        margin: 0 0.5vw 0 0;
+    }
+
+    .buttons {
+        padding: 8px;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .tabs {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+
+    .tab-content-wrapper {
+        flex: 1;
+    }
+
+    .h3, h3 {
+        font-size: calc(1rem + .5vw);
+    }
+
+    /* Card layout: full-width on mobile */
+    .cards {
+        gap: 4vw;
+        flex-direction: column;
+    }
+
+    .cards .box-container,
+    .box-container {
+        width: 100%;
+        border-radius: 6px;
+    }
+
+    .box-container .titles {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 2vw;
+    }
+
+    .box-container .titles h2 {
+        font-size: clamp(14px, 4vw, 18px);
+    }
+
+    /* Image row items: 3-per-row compact tiles on mobile */
+    .img-container {
+        gap: 2.5vw;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .flip-card,
+    .flip-card-front,
+    .flip-card-back {
+        width: clamp(90px, 28vw, 140px);
+    }
+
+    .zoom img {
+        max-width: clamp(90px, 28vw, 140px);
+    }
+
+    .video-box {
+        width: clamp(90px, 28vw, 140px);
+    }
+
+    /* Modal: full-width on mobile */
+    .image-figure,
+    .image-figure img {
+        max-width: 92vw;
+    }
+
+    .image-figure img {
+        max-height: 50vh;
+    }
+
+    /* Wider modal caption */
+    .modal-caption {
+        font-size: 0.85rem;
+    }
+
+    /* Larger close/nav buttons for touch */
+    .close {
+        font-size: 32px;
+        top: 10px;
+        right: 16px;
+    }
+
+    .nav-arrow {
+        font-size: 36px;
+    }
+
+    /* List-group tabs: scrollable horizontal strip on mobile */
+    .list-group {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .list-group-item {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* Video popup */
+    #popupVideo {
+        width: 95%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* ── Mid-tablet: 768px – 991px ─────────────────────────── */
 @media (min-width: 768px) and (max-width: 991px) {
     .buttons {
         padding: 20px;
@@ -617,6 +776,26 @@ li a:hover {
 
     .h3, h3 {
         font-size: calc(1.2rem + .55vw);
+    }
+
+    /* Keep boxes as 2-per-row but ensure no overflow */
+    .box-container {
+        width: 47%;
+    }
+
+    /* Slightly larger image tiles for tablets */
+    .flip-card,
+    .flip-card-front,
+    .flip-card-back {
+        width: clamp(80px, 11vw, 140px);
+    }
+
+    .zoom img {
+        max-width: clamp(80px, 11vw, 140px);
+    }
+
+    .video-box {
+        width: clamp(80px, 11vw, 140px);
     }
 }
 

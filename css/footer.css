@@ -16,7 +16,7 @@ footer {
 }
 
 .footer-p p {
-  font-size: 0.5dvw;
+  font-size: clamp(10px, 1.1vw, 14px);
 }
 
 
