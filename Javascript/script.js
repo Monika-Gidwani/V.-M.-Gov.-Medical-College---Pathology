@@ -4,7 +4,7 @@
 let scale = 1, translateX = 0, translateY = 0;
 let isDragging = false, startX, startY;
 let currentIndex = 0, currentGroup = '';
-let groupedImages = {};
+let groupedimages-temp = {};
 
 /* DOM refs */
 let modal, zoomWrapper, popupImg, closeBtn, prevBtn, nextBtn;
@@ -32,18 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
   prevBtn     = $('.nav-arrow.prev', modal);
   nextBtn     = $('.nav-arrow.next', modal);
 
-  // ---- BUILD groupedImages (one entry per data-group) ----
+  // ---- BUILD groupedimages-temp (one entry per data-group) ----
   document.querySelectorAll('.zoom-group').forEach(groupEl => {
     const groupName = groupEl.dataset.group;
-    if (!groupedImages[groupName]) groupedImages[groupName] = [];
+    if (!groupedimages-temp[groupName]) groupedimages-temp[groupName] = [];
 
     groupEl.querySelectorAll('.zoom img').forEach(img => {
-      groupedImages[groupName].push({ src: img.src, alt: img.alt || '' ,caption: img.dataset.caption || img.alt || ''});
+      groupedimages-temp[groupName].push({ src: img.src, alt: img.alt || '' ,caption: img.dataset.caption || img.alt || ''});
     });
   });
 
   // ---- SHOW ONLY FIRST thumbnail of each group ----
-  Object.entries(groupedImages).forEach(([group, imgs]) => {
+  Object.entries(groupedimages-temp).forEach(([group, imgs]) => {
     const containers = document.querySelectorAll(`.zoom-group[data-group="${group}"] .zoom`);
     containers.forEach((c, i) => {
       if (i === 0) {
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateCaption() {
   if (!modalCaption) return;
-  const items = groupedImages[currentGroup];
+  const items = groupedimages-temp[currentGroup];
   if (!items || !items[currentIndex]) {
     modalCaption.textContent = '';
     return;
@@ -118,7 +118,7 @@ function updateCaption() {
 }
 
 function openModalByIndex(groupName, idx) {
-  const items = groupedImages[groupName];
+  const items = groupedimages-temp[groupName];
   if (!items?.length || !modal || !popupImg) return;
 
   currentGroup = groupName;
@@ -133,7 +133,7 @@ function openModalByIndex(groupName, idx) {
 }
 
 function changeImage(dir) {
-  const items = groupedImages[currentGroup];
+  const items = groupedimages-temp[currentGroup];
   if (!items) return;
   currentIndex = (currentIndex + dir + items.length) % items.length;
   popupImg.src = items[currentIndex].src;
@@ -163,7 +163,7 @@ function updateTransform() {
 }
 
 function updateArrows() {
-  const count = groupedImages[currentGroup]?.length || 0;
+  const count = groupedimages-temp[currentGroup]?.length || 0;
   const show = count > 1;
   if (prevBtn) prevBtn.style.display = show ? 'block' : 'none';
   if (nextBtn) nextBtn.style.display = show ? 'block' : 'none';

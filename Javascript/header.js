@@ -19,7 +19,7 @@
       <header class="header-container">
         <div class="header-container1">
 
-          <img src="Images/VM Logo - Copy.jpg" alt="VMGMC Logo" id="Logo">
+          <img src="images-temp/VM Logo - Copy.jpg" alt="VMGMC Logo" id="Logo">
 
           <div class="sizes">
             <h1>16Path</h1>
