@@ -209,7 +209,14 @@ function openPopup(img) {
 
 // Video popup
 function openVideoPopup(iframe) {
-  document.getElementById('popupVideo').src = iframe.src;
+  const src = iframe.src;
+  const videoIdMatch = src.match(/embed\/([^?]+)/);
+  if (videoIdMatch) {
+    const videoId = videoIdMatch[1];
+    document.getElementById('popupVideo').src = `https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1&mute=1&modestbranding=1`;
+  } else {
+    document.getElementById('popupVideo').src = src;
+  }
   document.getElementById('videoModal').style.display = 'flex';
 }
 
