@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>16Path: A VMGMC Initiative</title>
   <link rel="stylesheet" href="css/header.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+
+
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+
 <body>
 
   <div class="main-container">
@@ -45,24 +47,31 @@
           </div>
           
           <div class="img-container">
-            <div class="flip-card" onclick="flipImage(this)">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <img src="./images-temp/grossimage1.jpeg" alt="Gross Image 1">
-                </div>
-                <div class="flip-card-back">
-                  <h3>Gross Image</h3>
-                  <p>Pathology Museum</p>
-                </div>
+            <div class="zoom-group" data-group="zoomables-12">
+              <div class="zoom visible">
+                  <img src="./images-temp/grossimage1.jpeg" alt="Gross Image 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-12',0)">
               </div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
-            <div class="zoom">
-              <img src="./images-temp/image.png" alt="Cytology" onclick="openPopup(this)">
+            <div class="zoom-group" data-group="zoomables-13">
+              <div class="zoom visible">
+                <img src="./images-temp/image.png"  alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-13',0)">
+              </div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
-            <div class="zoom">
-              <img src="./images-temp/image.png" alt="Cytology" onclick="openPopup(this)">
+            <div class="zoom-group" data-group="zoomables-14">
+              <div class="zoom visible">
+                <img src="./images-temp/image.png" alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-14',0)">
+              </div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
             <div class="video-box">
@@ -72,25 +81,37 @@
                         referrerpolicy="strict-origin-when-cross-origin" onclick="openVideoPopup(this)">
               </iframe>
             </div>
+          </div>
 
-            <div class="flip-card" onclick="flipImage(this)">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <img src="./images-temp/grossimage1.jpeg" alt="Gross Image 1">
-                </div>
-                <div class="flip-card-back">
-                  <h3>Gross Image</h3>
-                  <p>Pathology Museum</p>
-                </div>
+
+
+
+          <div class="img-container">
+            <div class="zoom-group" data-group="zoomables-15">
+              <div class="zoom visible">
+                  <img src="./images-temp/grossimage1.jpeg" alt="Gross Image 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-15',0)">
               </div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
-            <div class="zoom">
-              <img src="./images-temp/image.png" alt="Cytology" onclick="openPopup(this)">
+            <div class="zoom-group" data-group="zoomables-16">
+              <div class="zoom visible">
+                <img src="./images-temp/image.png"  alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-16',0)">
+              </div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
-            <div class="zoom">
-              <img src="./images-temp/image.png" alt="Cytology" onclick="openPopup(this)">
+            <div class="zoom-group" data-group="zoomables-17">
+              <div class="zoom visible">
+                <img src="./images-temp/image.png" alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-17',0)">
+              </div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
             <div class="video-box">
@@ -100,7 +121,8 @@
                         referrerpolicy="strict-origin-when-cross-origin" onclick="openVideoPopup(this)">
               </iframe>
             </div>
-          </div> 
+          </div>
+
           
           <div class="buttons">
             <div class="content-wrapper">
@@ -141,24 +163,31 @@
           </div>
           
           <div class="img-container">
-            <div class="flip-card" onclick="flipImage(this)">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <img src="./images-temp/grossimage1.jpeg" alt="Gross Image 1">
-                </div>
-                <div class="flip-card-back">
-                  <h3>Gross Image</h3>
-                  <p>Pathology Museum</p>
-                </div>
+            <div class="zoom-group" data-group="zoomables-18">
+              <div class="zoom visible">
+                  <img src="./images-temp/grossimage1.jpeg" alt="Gross Image 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-18',0)">
               </div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
-            <div class="zoom">
-              <img src="./images-temp/image.png" alt="Cytology" onclick="openPopup(this)">
+            <div class="zoom-group" data-group="zoomables-19">
+              <div class="zoom visible">
+                <img src="./images-temp/image.png"  alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-19',0)">
+              </div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
-            <div class="zoom">
-              <img src="./images-temp/image.png" alt="Cytology" onclick="openPopup(this)">
+            <div class="zoom-group" data-group="zoomables-20">
+              <div class="zoom visible">
+                <img src="./images-temp/image.png" alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-20',0)">
+              </div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
             <div class="video-box">
@@ -168,25 +197,34 @@
                         referrerpolicy="strict-origin-when-cross-origin" onclick="openVideoPopup(this)">
               </iframe>
             </div>
+          </div>
 
-            <div class="flip-card" onclick="flipImage(this)">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <img src="./images-temp/grossimage1.jpeg" alt="Gross Image 1">
-                </div>
-                <div class="flip-card-back">
-                  <h3>Gross Image</h3>
-                  <p>Pathology Museum</p>
-                </div>
+            <div class="img-container">
+            <div class="zoom-group" data-group="zoomables-21">
+              <div class="zoom visible">
+                  <img src="./images-temp/grossimage1.jpeg" alt="Gross Image 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-21',0)">
               </div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/grossimage1.jpeg" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
-            <div class="zoom">
-              <img src="./images-temp/image.png" alt="Cytology" onclick="openPopup(this)">
+            <div class="zoom-group" data-group="zoomables-22">
+              <div class="zoom visible">
+                <img src="./images-temp/image.png"  alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-22',0)">
+              </div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
-            <div class="zoom">
-              <img src="./images-temp/image.png" alt="Cytology" onclick="openPopup(this)">
+            <div class="zoom-group" data-group="zoomables-23">
+              <div class="zoom visible">
+                <img src="./images-temp/image.png" alt="Cytology 1" data-caption="Cytology Specimen – High Resolution" onclick="openModalByIndex('zoomables-23',0)">
+              </div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 2" data-caption="Detailed Diagnosis Notes"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 3" data-caption="Differential Diagnosis Comparison"></div>
+              <div class="zoom hidden"><img src="./images-temp/image.png" alt="Cytology 4" data-caption="Differential Diagnosis Comparison"></div>
             </div>
 
             <div class="video-box">
@@ -243,11 +281,19 @@
     </section>
 
 
-    <!-- Popup Modal -->
-    <div id="imageModal" class="modal">
-      <span class="close" onclick="closePopup()">&times;</span>
+    <!-- Image Carousel Modal (matching museum.html) -->
+    <div class="modal">
+      <span class="close" onclick="closePop()">&times;</span>
+
+      <!-- navigation arrows -->
+      <span class="nav-arrow prev" onclick="changeImage(-1)">◄</span>
+      <span class="nav-arrow next" onclick="changeImage(1)">►</span>
+
       <div class="zoom-wrapper">
-        <img class="modal-content" id="popupImage" draggable="false">
+        <figure class="image-figure">
+          <img src="" alt="">
+          <figcaption class="modal-caption"></figcaption>
+        </figure>
       </div>
     </div>
 

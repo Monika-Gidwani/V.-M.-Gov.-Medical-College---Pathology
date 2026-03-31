@@ -63,7 +63,8 @@
 // ── Hamburger menu event listeners ─────────────────────────────────────────
 function attachHeaderEventListeners() {
   const menu        = document.querySelector('.menu');
-  const openMenuBtn = document.querySelector('.header-right .open-menu-btn');
+const openMenuBtn = document.querySelector('.header-right .open-menu-btn') || document.querySelector('.open-menu-btn');
+
   const closeMenuBtn = document.querySelector('.close-menu-btn');
 
   if (!menu || !openMenuBtn || !closeMenuBtn) {
