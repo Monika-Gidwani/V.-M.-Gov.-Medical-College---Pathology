@@ -361,7 +361,7 @@ p, strong, li, a, .caption, .flip-card-back p {
 
 .zoom-wrapper {
     width: 100%;
-    height: 100%;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -16,8 +16,8 @@ const $ = (s, r = document) => r.querySelector(s);
 /* ============================================= */
 /*  FLIPPABLE                                    */
 /* ============================================= */
-function flipImage(el) { 
-  el.classList.toggle('flipped'); 
+function flipImage(el) {
+  el.classList.toggle('flipped');
 }
 
 /* ============================================= */
@@ -25,27 +25,37 @@ function flipImage(el) {
 /* ============================================= */
 document.addEventListener('DOMContentLoaded', () => {
   // modal refs
-  modal       = $('.modal');
+  modal = $('.modal');
   modalCaption = $('.modal-caption', modal);
   zoomWrapper = $('.zoom-wrapper', modal);
-  popupImg    = $('img', zoomWrapper);
-  closeBtn    = $('.close', modal);
-  prevBtn     = $('.nav-arrow.prev', modal);
-  nextBtn     = $('.nav-arrow.next', modal);
+  popupImg = $('img', zoomWrapper);
+  closeBtn = $('.close', modal);
+  prevBtn = $('.nav-arrow.prev', modal);
+  nextBtn = $('.nav-arrow.next', modal);
 
   // BUILD groupedImages (one entry per data-group)
   document.querySelectorAll('.zoom-group').forEach(groupEl => {
-    const groupName = groupEl.dataset.group;
-    if (!groupedImages[groupName]) groupedImages[groupName] = [];
-
-    groupEl.querySelectorAll('.zoom img').forEach(img => {
-      groupedImages[groupName].push({ 
-        src: img.src, 
-        alt: img.alt || '', 
-        caption: img.dataset.caption || img.alt || '' 
+  const groupName = groupEl.dataset.group;
+  // RESET (important)
+  groupedImages[groupName] = [];
+  Array.from(groupEl.children).forEach(zoomDiv => {
+    const img = zoomDiv.querySelector("img");
+    if (img) {
+      groupedImages[groupName].push({
+        src: img.src,
+        alt: img.alt || '',
+        caption: img.dataset.caption || img.alt || ''
       });
-    });
+    }
   });
+});
+
+  // DEBUG: Log first 2 groups sample
+  console.log('DEBUG groupedImages sample:', JSON.stringify(
+    Object.fromEntries(Object.entries(groupedImages).slice(0,2)), 
+    null, 2
+  ));
+
 
   // SHOW ONLY FIRST thumbnail of each group
   Object.entries(groupedImages).forEach(([group, imgs]) => {
@@ -78,6 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     zoomWrapper.addEventListener('wheel', e => {
       e.preventDefault();
+      
+      // Scroll = next image + zoom
+      if (e.deltaY > 0) {
+        changeImage(1);
+      } else {
+        changeImage(-1);
+      }
+      
       const delta = e.deltaY > 0 ? -0.1 : 0.1;
       scale = Math.min(Math.max(scale + delta, 1), 5);
       updateTransform();
@@ -125,11 +143,16 @@ function openModalByIndex(groupName, idx) {
   const items = groupedImages[groupName];
   if (!items?.length || !modal || !popupImg) return;
 
+  console.log(`DEBUG openModal: group=${groupName}, idx=${idx}, total=${items?.length || 0}`);
+
   currentGroup = groupName;
   currentIndex = Math.max(0, Math.min(idx, items.length - 1));
 
-  popupImg.src = items[currentIndex].src;
   popupImg.alt = items[currentIndex].alt;
+  popupImg.onload = () => console.log('DEBUG img load OK:', items[currentIndex].src);
+  popupImg.onerror = () => console.log('DEBUG img LOAD ERROR:', items[currentIndex].src);
+  popupImg.style.opacity = '0.5';
+  setTimeout(() => { popupImg.complete = false; popupImg.src = items[currentIndex].src + '?t=' + Date.now(); popupImg.style.opacity = '1'; }, 50);
   modal.style.display = 'flex';
   resetZoom();
   updateArrows();
@@ -139,9 +162,14 @@ function openModalByIndex(groupName, idx) {
 function changeImage(dir) {
   const items = groupedImages[currentGroup];
   if (!items) return;
+  const oldIndex = currentIndex;
   currentIndex = (currentIndex + dir + items.length) % items.length;
-  popupImg.src = items[currentIndex].src;
+  console.log(`DEBUG changeImage: dir=${dir}, oldIdx=${oldIndex}, newIdx=${currentIndex}, total=${items.length}, src="${items[currentIndex].src}"`);
   popupImg.alt = items[currentIndex].alt;
+  popupImg.onload = () => console.log('DEBUG img load OK:', items[currentIndex].src);
+  popupImg.onerror = () => console.log('DEBUG img LOAD ERROR:', items[currentIndex].src);
+  popupImg.style.opacity = '0.5';
+  setTimeout(() => { popupImg.complete = false; popupImg.src = items[currentIndex].src + '?t=' + Date.now(); popupImg.style.opacity = '1'; }, 50);
   resetZoom();
   updateArrows();
   updateCaption();
@@ -175,27 +203,27 @@ function updateArrows() {
 
 // Scoped Tabs for each section
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.box-container[data-section]').forEach(sectionEl => {
-        const tabs = sectionEl.querySelectorAll('.list-group-item');
-        const tabPanes = sectionEl.querySelectorAll('.tab-pane');
+  document.querySelectorAll('.box-container[data-section]').forEach(sectionEl => {
+    const tabs = sectionEl.querySelectorAll('.list-group-item');
+    const tabPanes = sectionEl.querySelectorAll('.tab-pane');
 
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function (e) {
-                e.preventDefault();
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function (e) {
+        e.preventDefault();
 
-                // Remove active class from tabs in this section only
-                tabs.forEach(t => t.classList.remove('active'));
-                // Add active class to the clicked tab
-                this.classList.add('active');
+        // Remove active class from tabs in this section only
+        tabs.forEach(t => t.classList.remove('active'));
+        // Add active class to the clicked tab
+        this.classList.add('active');
 
-                // Hide tab panes in this section only
-                tabPanes.forEach(pane => pane.classList.remove('active'));
-                // Show the corresponding tab pane
-                const target = sectionEl.querySelector(this.getAttribute('href'));
-                if (target) target.classList.add('active');
-            });
-        });
+        // Hide tab panes in this section only
+        tabPanes.forEach(pane => pane.classList.remove('active'));
+        // Show the corresponding tab pane
+        const target = sectionEl.querySelector(this.getAttribute('href'));
+        if (target) target.classList.add('active');
+      });
     });
+  });
 });
 
 // Single image popup (for backward compatibility)
