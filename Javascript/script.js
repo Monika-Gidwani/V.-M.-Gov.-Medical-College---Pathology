@@ -149,7 +149,7 @@ function openModalByIndex(groupName, idx) {
   popupImg.onload = () => console.log('DEBUG img load OK:', items[currentIndex].src);
   popupImg.onerror = () => console.log('DEBUG img LOAD ERROR:', items[currentIndex].src);
   popupImg.style.opacity = '0.5';
-  setTimeout(() => { popupImg.complete = false; popupImg.src = items[currentIndex].src + '?t=' + Date.now(); popupImg.style.opacity = '1'; }, 50);
+  setTimeout(() => { popupImg.src = items[currentIndex].src; popupImg.style.opacity = '1'; }, 50);
   modal.style.display = 'flex';
   resetZoom();
   updateArrows();
@@ -166,7 +166,7 @@ function changeImage(dir) {
   popupImg.onload = () => console.log('DEBUG img load OK:', items[currentIndex].src);
   popupImg.onerror = () => console.log('DEBUG img LOAD ERROR:', items[currentIndex].src);
   popupImg.style.opacity = '0.5';
-  setTimeout(() => { popupImg.complete = false; popupImg.src = items[currentIndex].src + '?t=' + Date.now(); popupImg.style.opacity = '1'; }, 50);
+  setTimeout(() => { popupImg.src = items[currentIndex].src; popupImg.style.opacity = '1'; }, 50);
   resetZoom();
   updateArrows();
   updateCaption();
