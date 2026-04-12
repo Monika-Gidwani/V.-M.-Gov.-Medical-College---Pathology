@@ -35,48 +35,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // BUILD groupedImages (one entry per data-group)
   document.querySelectorAll('.zoom-group').forEach(groupEl => {
-  const groupName = groupEl.dataset.group;
-  // RESET (important)
-  groupedImages[groupName] = [];
-  Array.from(groupEl.children).forEach(zoomDiv => {
-    const img = zoomDiv.querySelector("img");
-    if (img) {
-      groupedImages[groupName].push({
-        src: img.src,
-        alt: img.alt || '',
-        caption: img.dataset.caption || img.alt || ''
-      });
-    }
+    const groupName = groupEl.dataset.group;
+    // RESET (important)
+    groupedImages[groupName] = [];
+    Array.from(groupEl.children).forEach(zoomDiv => {
+      const img = zoomDiv.querySelector("img");
+      if (img) {
+        groupedImages[groupName].push({
+          src: img.src,
+          alt: img.alt || '',
+          caption: img.dataset.caption || img.alt || ''
+        });
+      }
+    });
   });
-});
 
   // DEBUG: Log first 2 groups sample
   console.log('DEBUG groupedImages sample:', JSON.stringify(
-    Object.fromEntries(Object.entries(groupedImages).slice(0,2)), 
+    Object.fromEntries(Object.entries(groupedImages).slice(0, 2)),
     null, 2
   ));
 
 
   // SHOW ONLY FIRST thumbnail of each group
+  // NOTE: Do NOT add another addEventListener here — the inline onclick on each
+  // first-image in the HTML already calls openModalByIndex. Adding a second
+  // listener here would cause openModalByIndex to fire TWICE per click, which
+  // makes navigation appear to skip every other image.
   Object.entries(groupedImages).forEach(([group, imgs]) => {
     const containers = document.querySelectorAll(`.zoom-group[data-group="${group}"] .zoom`);
     containers.forEach((c, i) => {
       if (i === 0) {
         c.classList.add('visible');
-        c.querySelector('img').addEventListener('click', e => {
-          e.stopPropagation();
-          openModalByIndex(group, 0);
-        });
+        // NO extra click listener here — handled by inline onclick in HTML
       } else {
         c.classList.add('hidden');
       }
     });
   });
 
-  // navigation
-  if (prevBtn) prevBtn.addEventListener('click', () => changeImage(-1));
-  if (nextBtn) nextBtn.addEventListener('click', () => changeImage(1));
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  // navigation arrow buttons
+  // NOTE: The HTML arrows already have inline onclick="changeImage(±1)" so we
+  // must NOT add addEventListener here as well — that would double-fire every
+  // arrow click and skip images. Same for the close button (inline closePop()).
+  // All three are handled exclusively via inline onclick in museum.html.
 
   // click outside / ESC
   modal?.addEventListener('click', e => { if (e.target === modal) closeModal(); });
@@ -88,14 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     zoomWrapper.addEventListener('wheel', e => {
       e.preventDefault();
-      
-      // Scroll = next image + zoom
-      if (e.deltaY > 0) {
-        changeImage(1);
-      } else {
-        changeImage(-1);
-      }
-      
+      // Scroll ONLY zooms — it does NOT navigate images.
+      // Combining both in the same handler caused changeImage() to run on every
+      // scroll tick, making navigation appear to skip images when scrolling.
       const delta = e.deltaY > 0 ? -0.1 : 0.1;
       scale = Math.min(Math.max(scale + delta, 1), 5);
       updateTransform();

@@ -271,13 +271,10 @@ p, strong, li, a, .caption, .flip-card-back p {
     transform: scale(1.05);
 }
 
-.zoom.hidden {
-  position: absolute;
-  left: -9999px;      /* off‑screen */
-  visibility: hidden;
-  pointer-events: none;
-}
-.zoom.visible { display: inline-block; }
+.zoom-group .zoom:not(:first-child) {
+    display: none;
+  }
+
 
 .zoom.visible img {
     width: 100%;
