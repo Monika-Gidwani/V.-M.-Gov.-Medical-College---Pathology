@@ -145,11 +145,23 @@ function openModalByIndex(groupName, idx) {
   currentGroup = groupName;
   currentIndex = Math.max(0, Math.min(idx, items.length - 1));
 
-  popupImg.alt = items[currentIndex].alt;
-  popupImg.onload = () => console.log('DEBUG img load OK:', items[currentIndex].src);
-  popupImg.onerror = () => console.log('DEBUG img LOAD ERROR:', items[currentIndex].src);
+  const targetSrc = items[currentIndex].src;
+  const targetAlt = items[currentIndex].alt;
+  popupImg.alt = targetAlt;
   popupImg.style.opacity = '0.5';
-  setTimeout(() => { popupImg.src = items[currentIndex].src; popupImg.style.opacity = '1'; }, 50);
+  // Clear old handlers before assigning src to avoid stale callbacks
+  popupImg.onload = null;
+  popupImg.onerror = null;
+  setTimeout(() => {
+    popupImg.onload  = () => { console.log('DEBUG img load OK:', targetSrc); popupImg.style.opacity = '1'; };
+    popupImg.onerror = () =>   console.log('DEBUG img LOAD ERROR:', targetSrc);
+    if (popupImg.src === targetSrc) {
+      // src unchanged — browser won't fire onload again; force it
+      popupImg.style.opacity = '1';
+    } else {
+      popupImg.src = targetSrc;
+    }
+  }, 50);
   modal.style.display = 'flex';
   resetZoom();
   updateArrows();
@@ -161,12 +173,24 @@ function changeImage(dir) {
   if (!items) return;
   const oldIndex = currentIndex;
   currentIndex = (currentIndex + dir + items.length) % items.length;
-  console.log(`DEBUG changeImage: dir=${dir}, oldIdx=${oldIndex}, newIdx=${currentIndex}, total=${items.length}, src="${items[currentIndex].src}"`);
-  popupImg.alt = items[currentIndex].alt;
-  popupImg.onload = () => console.log('DEBUG img load OK:', items[currentIndex].src);
-  popupImg.onerror = () => console.log('DEBUG img LOAD ERROR:', items[currentIndex].src);
+  const targetSrc = items[currentIndex].src;
+  const targetAlt = items[currentIndex].alt;
+  console.log(`DEBUG changeImage: dir=${dir}, oldIdx=${oldIndex}, newIdx=${currentIndex}, total=${items.length}, src="${targetSrc}"`);
+  popupImg.alt = targetAlt;
   popupImg.style.opacity = '0.5';
-  setTimeout(() => { popupImg.src = items[currentIndex].src; popupImg.style.opacity = '1'; }, 50);
+  // Clear old handlers before assigning src to avoid stale callbacks
+  popupImg.onload = null;
+  popupImg.onerror = null;
+  setTimeout(() => {
+    popupImg.onload  = () => { console.log('DEBUG img load OK:', targetSrc); popupImg.style.opacity = '1'; };
+    popupImg.onerror = () =>   console.log('DEBUG img LOAD ERROR:', targetSrc);
+    if (popupImg.src === targetSrc) {
+      // src unchanged — browser won't re-fire onload; show image directly
+      popupImg.style.opacity = '1';
+    } else {
+      popupImg.src = targetSrc;
+    }
+  }, 50);
   resetZoom();
   updateArrows();
   updateCaption();
