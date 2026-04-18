@@ -72,6 +72,11 @@ header {
     justify-content: center;
     margin-left: 0.5rem;
 }
+.sizes h1 {
+    color: #d70808;   /* brighter red */
+    font-weight: 800; /* bold look */
+    letter-spacing: 1px; /* slight spacing for clarity */
+}
 
 /* Container for navbar */
 .container {

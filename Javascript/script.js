@@ -80,9 +80,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // arrow click and skip images. Same for the close button (inline closePop()).
   // All three are handled exclusively via inline onclick in museum.html.
 
-  // click outside / ESC
+  // click outside / ESC  — handles both image AND video modals
   modal?.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  window.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Video modal: close on backdrop click
+  const videoModal = document.getElementById('videoModal');
+  videoModal?.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+
+  // ESC closes whichever modal is open
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (videoModal && videoModal.style.display === 'flex') {
+        closeVideoModal();
+      } else {
+        closeModal();
+      }
+    }
+  });
+
+  // Keyboard (Enter / Space) activation for video-box thumbnail cards
+  document.querySelectorAll('.video-box').forEach(box => {
+    box.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        box.click();
+      }
+    });
+  });
 
   // zoom & pan
   if (zoomWrapper && popupImg) {
@@ -256,23 +280,70 @@ function openPopup(img) {
   modal.style.display = 'flex';
 }
 
-// Video popup
-function openVideoPopup(iframe) {
-  const src = iframe.src;
-  const videoIdMatch = src.match(/embed\/([^?]+)/);
-  if (videoIdMatch) {
-    const videoId = videoIdMatch[1];
-    document.getElementById('popupVideo').src = `https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1&mute=1&modestbranding=1`;
-  } else {
-    document.getElementById('popupVideo').src = src;
-  }
-  document.getElementById('videoModal').style.display = 'flex';
+/* ============================================= */
+/*  VIDEO MODAL                                  */
+/* ============================================= */
+
+/**
+ * Opens the video modal and loads the YouTube embed.
+ * Called via onclick on .video-box thumbnail cards.
+ *
+ * @param {string} videoId  - YouTube video ID  (e.g. 'u-s4oOwh4kQ')
+ * @param {string} [title]  - Optional title shown below the player
+ */
+function openVideoModal(videoId, title) {
+  const modal  = document.getElementById('videoModal');
+  const iframe = document.getElementById('popupVideo');
+  const titleEl = document.getElementById('videoModalTitle');
+
+  if (!modal || !iframe) return;
+
+  // Build a proper embed URL:
+  //   - autoplay=1  → starts playing immediately
+  //   - rel=0       → no related-video redirect at end
+  //   - modestbranding=1 → minimal YouTube branding
+  //   - enablejsapi=1    → lets us stop playback on close
+  iframe.src = `https://www.youtube.com/embed/${videoId}` +
+    `?autoplay=1&rel=0&modestbranding=1&enablejsapi=1`;
+
+  if (titleEl) titleEl.textContent = title || '';
+
+  // display:flex triggers the CSS fade-in animation
+  modal.style.display = 'flex';
+
+  // Prevent page scroll while modal is open
+  document.body.style.overflow = 'hidden';
 }
 
-function closeVideoPopup() {
-  document.getElementById('videoModal').style.display = 'none';
-  document.getElementById('popupVideo').src = '';
+/**
+ * Closes the video modal and stops the video by clearing iframe src.
+ * This is the ONLY reliable cross-browser way to stop a YouTube iframe
+ * without the YouTube IFrame API.
+ */
+function closeVideoModal() {
+  const modal  = document.getElementById('videoModal');
+  const iframe = document.getElementById('popupVideo');
+  const titleEl = document.getElementById('videoModalTitle');
+
+  if (!modal) return;
+
+  modal.style.display = 'none';
+
+  // Clearing src stops the video immediately (no audio bleed-through)
+  if (iframe) iframe.src = '';
+  if (titleEl) titleEl.textContent = '';
+
+  // Restore page scroll
+  document.body.style.overflow = '';
 }
+
+// Legacy aliases kept so any other page/code using the old names still works
+function openVideoPopup(iframe) {
+  const src = (iframe && iframe.src) ? iframe.src : '';
+  const m   = src.match(/embed\/([^?&]+)/);
+  openVideoModal(m ? m[1] : src, '');
+}
+function closeVideoPopup() { closeVideoModal(); }
 
 // Legacy closePop compatibility
 function closePop() {
