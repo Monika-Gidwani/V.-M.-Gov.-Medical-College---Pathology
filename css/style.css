@@ -1011,30 +1011,20 @@ li a:hover {
     letter-spacing: 0.01em;
 }
 
-/* Close button */
+/* Close button — exactly matches the image modal .close style */
 .video-modal-close {
     position: absolute;
-    top: -2.6rem;
-    right: 0;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #fff;
-    font-size: 1.3rem;
-    line-height: 1;
-    width: 2.2rem;
-    height: 2.2rem;
-    border-radius: 50%;
+    top: 15px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease, transform 0.15s ease;
-    z-index: 10001;
-}
-
-.video-modal-close:hover {
-    background: rgba(255, 255, 255, 0.28);
-    transform: scale(1.1) rotate(90deg);
+    padding: 0;
+    line-height: 1;
+    z-index: 10002;
 }
 
 /* ── Responsive: tablet ────────────────────────────────── */
@@ -1066,9 +1056,8 @@ li a:hover {
     }
 
     .video-modal-close {
-        top: -2.8rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 1.5rem;
+        top: 10px;
+        right: 16px;
+        font-size: 32px;
     }
 }

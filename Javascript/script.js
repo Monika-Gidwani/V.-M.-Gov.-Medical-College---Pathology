@@ -192,6 +192,31 @@ function openModalByIndex(groupName, idx) {
   updateCaption();
 }
 
+/**
+ * openModalAuto(img)
+ * -------------------
+ * Called via onclick="openModalAuto(this)" on any image inside a .zoom-group.
+ * Dynamically determines the correct group name and the clicked image's index
+ * within that group — no hardcoded numbers needed in the HTML.
+ *
+ * How it works:
+ *   1. Walk up from the <img> to its parent .zoom-group.
+ *   2. Read the group name from data-group.
+ *   3. Find all <img> elements inside that group and locate the clicked one.
+ *   4. Call openModalByIndex with the correct index.
+ */
+function openModalAuto(img) {
+  const groupEl = img.closest('.zoom-group');
+  if (!groupEl) return;
+
+  const groupName = groupEl.dataset.group;
+  const allImgs   = Array.from(groupEl.querySelectorAll('.zoom img'));
+  const idx       = allImgs.indexOf(img);
+
+  if (idx === -1) return; // safety guard
+  openModalByIndex(groupName, idx);
+}
+
 function changeImage(dir) {
   const items = groupedImages[currentGroup];
   if (!items) return;
