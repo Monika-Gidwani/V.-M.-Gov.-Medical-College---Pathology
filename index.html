@@ -16,6 +16,72 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
   <!-- Lightbox JS (deferred to avoid render-blocking) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" defer></script>
+
+  <!-- =========================================================
+       INDEX-ONLY: Horizontal tabs (top layout)
+       Scoped to .index-tabs-wrapper so museum/media are unaffected
+       ========================================================= -->
+  <style>
+    /* Stack tabs above the content box */
+    .index-tabs-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    /* Tabs row: horizontal, flush together */
+    .index-tabs-wrapper .tabs {
+      flex: none;
+      margin-right: 0;
+      margin-bottom: 0;
+    }
+
+    .index-tabs-wrapper .list-group {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 10px 10px 0;
+      border-bottom: none;
+      margin-bottom: 8px;
+    }
+
+    .index-tabs-wrapper .list-group-item {
+      display: inline-block;
+      padding: 8px 18px;
+      margin-bottom: 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      background-color: #f5f5f5;
+      color: #333;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .index-tabs-wrapper .list-group-item:hover {
+      background-color: #e8e8e8;
+    }
+
+    .index-tabs-wrapper .list-group-item.active {
+      background-color: #FDFACF;
+      color: #6D3F36;
+      z-index: 1;
+    }
+
+    /* Content expands full width, no left sidebar gap */
+    .index-tabs-wrapper .tab-content-wrapper {
+      flex: 1;
+      width: 100%;
+    }
+
+    .index-tabs-wrapper .tab-content {
+      border-radius: 5px;
+    }
+  </style>
 </head>
 
 <body>
@@ -56,7 +122,7 @@
 
 
           <div class="buttons">
-            <div class="content-wrapper">
+            <div class="content-wrapper index-tabs-wrapper">
               <div class="tabs">
                 <div class="list-group" id="list-tab">
                   <a class="list-group-item active" id="SampleSpecimen-1-1-list" href="#Etiology-1">VMPath</a>
@@ -117,7 +183,7 @@
 
 
           <div class="buttons">
-            <div class="content-wrapper">
+            <div class="content-wrapper index-tabs-wrapper">
               <div class="tabs">
                 <div class="list-group" id="list-tab">
                   <a class="list-group-item active" id="SampleSpecimen-2-1-list" href="#Etiology-2">16Path</a>
