@@ -61,52 +61,59 @@
                * ──────────────────────────────────────────────────────────────────────── */
               (function () {
 
-                // ── Image groups config ─────────────────────────────────────────────
-                // Edit count values here to add or remove images per category.
-                const imageGroups = [
-                  { prefix: 'CVS', count: 4 },  // CVS (1).png … CVS (4).png
-                  { prefix: 'Endo', count: 2 },  // Endo (1).png, Endo (2).png
-                  { prefix: 'FR', count: 6 },  // FR (1).png … FR (6).png
-                  { prefix: 'GIT', count: 6 },  // GIT (1).png … GIT (6).png
-                  { prefix: 'LR', count: 7 },  // LR (1).png … LR (7).png
-                  { prefix: 'MR', count: 2 },  // MR (1).png, MR (2).png
-                  { prefix: 'Msk', count: 2 },  // Msk (1).png, Msk (2).png
-                  { prefix: 'Renal', count: 3 },  // Renal (1).png … Renal (3).png
-                  { prefix: 'RS', count: 6 },  // RS (1).png … RS (6).png
+                /* ── Unified image config ───────────────────────────────────────────────
+                 *  Each entry is EITHER:
+                 *    { prefix, count }  → generates  prefix (1).png … prefix (count).png
+                 *    { name }           → inserts a single file  name.png  at this position
+                 *
+                 *  Edit counts or insert { name } entries to change the sequence.
+                 *  Current total: 40 images, Renal.png at position 30.
+                 * ──────────────────────────────────────────────────────────────────── */
+                const imageConfig = [
+                  { prefix: 'CVS',   count: 4 },  // pos  1-4   CVS (1-4).png
+                  { prefix: 'Endo',  count: 2 },  // pos  5-6   Endo (1-2).png
+                  { prefix: 'FR',    count: 6 },  // pos  7-12  FR (1-6).png
+                  { prefix: 'GIT',   count: 6 },  // pos 13-18  GIT (1-6).png
+                  { prefix: 'LR',    count: 7 },  // pos 19-25  LR (1-7).png
+                  { prefix: 'MR',    count: 2 },  // pos 26-27  MR (1-2).png
+                  { prefix: 'Msk',   count: 2 },  // pos 28-29  Msk (1-2).png
+                  { name: 'Renal'              },  // pos 30     Renal.png  ← special
+                  { prefix: 'Renal', count: 3 },  // pos 31-33  Renal (1-3).png
+                  { prefix: 'RS',    count: 6 },  // pos 34-39  RS (1-6).png
+                  { name: 'Msk (3)'            },  // pos 40     Msk (3).png ← special
                 ];
-
-                // ── Last image with a special custom filename ───────────────────────
-                const lastImageName = '191-200';  // → ./media-images/191-200.png
 
                 const container = document.getElementById('media-img-gallery');
                 if (!container) return;
 
-                // Generate one <div class="zoom"><img></div> per image in each group
-                imageGroups.forEach(function (group) {
-                  for (var i = 1; i <= group.count; i++) {
-                    var name = group.prefix + ' (' + i + ')';
+                imageConfig.forEach(function (entry) {
+                  if (entry.name) {
+                    // Single image with a custom filename (no number suffix)
                     var div = document.createElement('div');
                     div.className = 'zoom';
                     var img = document.createElement('img');
-                    img.src = './media-images/' + name + '.png';
-                    img.alt = name;
-                    img.setAttribute('data-caption', name);
+                    img.src = './media-images/' + entry.name + '.png';
+                    img.alt = entry.name;
+                    img.setAttribute('data-caption', entry.name);
                     img.setAttribute('onclick', 'openModalAuto(this)');
                     div.appendChild(img);
                     container.appendChild(div);
+                  } else {
+                    // Numbered sequence: prefix (1).png … prefix (count).png
+                    for (var i = 1; i <= entry.count; i++) {
+                      var name = entry.prefix + ' (' + i + ')';
+                      var div = document.createElement('div');
+                      div.className = 'zoom';
+                      var img = document.createElement('img');
+                      img.src = './media-images/' + name + '.png';
+                      img.alt = name;
+                      img.setAttribute('data-caption', name);
+                      img.setAttribute('onclick', 'openModalAuto(this)');
+                      div.appendChild(img);
+                      container.appendChild(div);
+                    }
                   }
                 });
-
-                // Append the final special image (191-200.png)
-                var lastDiv = document.createElement('div');
-                lastDiv.className = 'zoom';
-                var lastImg = document.createElement('img');
-                lastImg.src = './media-images/' + lastImageName + '.png';
-                lastImg.alt = 'Image ' + lastImageName;
-                lastImg.setAttribute('data-caption', lastImageName);
-                lastImg.setAttribute('onclick', 'openModalAuto(this)');
-                lastDiv.appendChild(lastImg);
-                container.appendChild(lastDiv);
 
               })();
             </script>
@@ -377,6 +384,7 @@
                 <div class="list-group" id="list-tab">
                   <a class="list-group-item active" id="SampleSpecimen-2-1-list" href="#Specimen-2">HPR</a>
                   <a class="list-group-item" id="SampleSpecimen-2-2-list" href="#Credits-2">PBS</a>
+                  <a class="list-group-item" id="SampleSpecimen-2-3-list" href="#Credits-3">Gross</a>
                 </div>
               </div>
 
@@ -395,6 +403,14 @@
                       <p style="margin-left: -15px !important;">
                         Step by step processes involved in production of peripheral blood smear.</p>
                     </ul>
+                  </div>
+
+                  <div class="tab-pane" id="Credits-3">
+                    <ul>
+                      <p style="margin-left: -15px !important;">
+                        Resident's in-house manual for systemtic stepwise assessment and evaluation of gross specimen receive in the department of Pathology.</p>
+                    </ul>
+                    <a href="Specimen Checklist.pdf" target="_blank" class="pdf-btn">Gross Specimen Evaluation Checklist</a>
                   </div>
                 </div>
               </div>

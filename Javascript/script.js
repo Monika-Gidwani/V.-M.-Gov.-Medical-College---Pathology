@@ -88,13 +88,20 @@ document.addEventListener('DOMContentLoaded', () => {
   videoModal?.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
 
   // ESC closes whichever modal is open
+  // ArrowLeft / ArrowRight navigate images when the image modal is open
   window.addEventListener('keydown', e => {
+    const imageModalOpen = modal && modal.style.display === 'flex';
+    const videoModalOpen = videoModal && videoModal.style.display === 'flex';
+
     if (e.key === 'Escape') {
-      if (videoModal && videoModal.style.display === 'flex') {
+      if (videoModalOpen) {
         closeVideoModal();
-      } else {
+      } else if (imageModalOpen) {
         closeModal();
       }
+    } else if (imageModalOpen && !videoModalOpen) {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); changeImage(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); changeImage(1);  }
     }
   });
 
