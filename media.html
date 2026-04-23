@@ -7,11 +7,9 @@
   <title>16Path: A VMGMC Initiative</title>
   <link rel="stylesheet" href="css/header.css">
 
-
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 
 <body>
 
@@ -48,66 +46,151 @@
           </div>
 
           <div class="img-container">
-            <!-- Palette 1 -->
-            <div class="zoom-group" data-group="zoomables-charts-p1">
-              <div class="zoom">
-                <img src="./posters/Poster 1st palate/Picture1.png" alt="Uterus with Adnexa" data-caption="Poster 1"
-                  onclick="openModalAuto(this)">
-              </div>
-              <div class="zoom">
-                <img src="./posters/Poster 1st palate/Picture2.png" alt="Uterus with Adnexa" data-caption="Poster 2"
-                  onclick="openModalAuto(this)">
-              </div>
-              <div class="zoom">
-                <img src="./posters/Poster 1st palate/Picture3.png" alt="Carcinoma Cervix" data-caption="Poster 3"
-                  onclick="openModalAuto(this)">
-              </div>
-              <div class="zoom">
-                <img src="./posters/Poster 1st palate/Picture4.png" alt="Carcinoma Cervix" data-caption="Poster 4"
-                  onclick="openModalAuto(this)">
-              </div>
-              <div class="zoom">
-                <img src="./posters/Poster 1st palate/Picture5.png" alt="Carcinoma Cervix" data-caption="Poster 5"
-                  onclick="openModalAuto(this)">
-              </div>
-              <div class="zoom">
-                <img src="./posters/Poster 1st palate/Picture6.png" alt="Carcinoma Cervix" data-caption="Poster 6"
-                  onclick="openModalAuto(this)">
-              </div>
-              <div class="zoom">
-                <img src="./posters/Poster 1st palate/Picture7.png" alt="Carcinoma Cervix" data-caption="Poster 7"
-                  onclick="openModalAuto(this)">
-              </div>
-            </div>
+            <!-- Palette 1 — populated dynamically by the script below -->
+            <div id="media-img-gallery" class="zoom-group" data-group="zoomables-charts-p1"></div>
+
+            <script>
+              /* ─── Media Gallery – Dynamic Image Loader ────────────────────────────────
+               *  This script runs immediately during HTML parsing (before DOMContentLoaded),
+               *  so all <div class="zoom"> elements exist in the DOM by the time script.js
+               *  scans .zoom-group to build its groupedImages index.
+               *
+               *  To ADD images   → increase the relevant `count` value.
+               *  To ADD a group  → push a new { prefix, count } entry to imageGroups.
+               *  File name rule  → ./media-images/<prefix> (<n>).png
+               * ──────────────────────────────────────────────────────────────────────── */
+              (function () {
+
+                // ── Image groups config ─────────────────────────────────────────────
+                // Edit count values here to add or remove images per category.
+                const imageGroups = [
+                  { prefix: 'CVS', count: 4 },  // CVS (1).png … CVS (4).png
+                  { prefix: 'Endo', count: 2 },  // Endo (1).png, Endo (2).png
+                  { prefix: 'FR', count: 6 },  // FR (1).png … FR (6).png
+                  { prefix: 'GIT', count: 6 },  // GIT (1).png … GIT (6).png
+                  { prefix: 'LR', count: 7 },  // LR (1).png … LR (7).png
+                  { prefix: 'MR', count: 2 },  // MR (1).png, MR (2).png
+                  { prefix: 'Msk', count: 2 },  // Msk (1).png, Msk (2).png
+                  { prefix: 'Renal', count: 3 },  // Renal (1).png … Renal (3).png
+                  { prefix: 'RS', count: 6 },  // RS (1).png … RS (6).png
+                ];
+
+                // ── Last image with a special custom filename ───────────────────────
+                const lastImageName = '191-200';  // → ./media-images/191-200.png
+
+                const container = document.getElementById('media-img-gallery');
+                if (!container) return;
+
+                // Generate one <div class="zoom"><img></div> per image in each group
+                imageGroups.forEach(function (group) {
+                  for (var i = 1; i <= group.count; i++) {
+                    var name = group.prefix + ' (' + i + ')';
+                    var div = document.createElement('div');
+                    div.className = 'zoom';
+                    var img = document.createElement('img');
+                    img.src = './media-images/' + name + '.png';
+                    img.alt = name;
+                    img.setAttribute('data-caption', name);
+                    img.setAttribute('onclick', 'openModalAuto(this)');
+                    div.appendChild(img);
+                    container.appendChild(div);
+                  }
+                });
+
+                // Append the final special image (191-200.png)
+                var lastDiv = document.createElement('div');
+                lastDiv.className = 'zoom';
+                var lastImg = document.createElement('img');
+                lastImg.src = './media-images/' + lastImageName + '.png';
+                lastImg.alt = 'Image ' + lastImageName;
+                lastImg.setAttribute('data-caption', lastImageName);
+                lastImg.setAttribute('onclick', 'openModalAuto(this)');
+                lastDiv.appendChild(lastImg);
+                container.appendChild(lastDiv);
+
+              })();
+            </script>
 
             <!-- Palette 2 -->
             <div class="zoom-group" data-group="zoomables-charts-p2">
               <div class="zoom">
-                <img src="./media-images/1 Uterus with Adnexa.jpg" alt="Uterus with Adnexa"
-                  data-caption="Uterus with Adnexa" onclick="openModalAuto(this)">
-              </div>
-              <div class="zoom">
-                <img src="./media-images/2 Uterus with Adnexa.jpg" alt="Uterus with Adnexa"
-                  data-caption="Uterus with Adnexa" onclick="openModalAuto(this)">
-              </div>
-              <div class="zoom">
-                <img src="./media-images/3 Carcinoma Cervix.jpg" alt="Carcinoma Cervix" data-caption="Carcinoma Cervix"
+                <img src="./Micro/CVC (1).png" alt="Uterus with Adnexa" data-caption="CVC (1)"
                   onclick="openModalAuto(this)">
               </div>
               <div class="zoom">
-                <img src="./media-images/4 Carcinoma Cervix.jpeg" alt="Carcinoma Cervix" data-caption="Carcinoma Cervix"
+                <img src="./Micro/CVC (2).png" alt="Uterus with Adnexa" data-caption="CVC (2)"
                   onclick="openModalAuto(this)">
               </div>
               <div class="zoom">
-                <img src="./media-images/4 Carcinoma Cervix.jpeg" alt="Carcinoma Cervix" data-caption="Carcinoma Cervix"
+                <img src="./Micro/CVS (1).png" alt="Carcinoma Cervix" data-caption="CVS (1)"
                   onclick="openModalAuto(this)">
               </div>
               <div class="zoom">
-                <img src="./media-images/4 Carcinoma Cervix.jpeg" alt="Carcinoma Cervix" data-caption="Carcinoma Cervix"
+                <img src="./Micro/CVS (2).png" alt="Carcinoma Cervix" data-caption="CVS (2)"
                   onclick="openModalAuto(this)">
               </div>
               <div class="zoom">
-                <img src="./media-images/4 Carcinoma Cervix.jpeg" alt="Carcinoma Cervix" data-caption="Carcinoma Cervix"
+                <img src="./Micro/Endo.png" alt="Carcinoma Cervix" data-caption="Endo" onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/FR (1).png" alt="Carcinoma Cervix" data-caption="FR (1)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/FR (3).png" alt="Carcinoma Cervix" data-caption="FR (3)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/GIT.png" alt="Carcinoma Cervix" data-caption="GIT" onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/Hemat (1).png" alt="Carcinoma Cervix" data-caption="Hemat (1)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/Hemat (2).png" alt="Carcinoma Cervix" data-caption="Hemat (2)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/Liver (1).png" alt="Carcinoma Cervix" data-caption="Liver (1)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/MR (2).png" alt="Carcinoma Cervix" data-caption="MR (2)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/MR.png" alt="Carcinoma Cervix" data-caption="MR" onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/Ren (2).png" alt="Carcinoma Cervix" data-caption="Ren (2)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/Ren (3).png" alt="Carcinoma Cervix" data-caption="Ren (3)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/Ren.png" alt="Carcinoma Cervix" data-caption="Ren" onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/Skin (1).png" alt="Carcinoma Cervix" data-caption="Skin (1)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/Skin (2).png" alt="Carcinoma Cervix" data-caption="Skin (2)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/TB (1).png" alt="Carcinoma Cervix" data-caption="TB (1)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/TB (2).png" alt="Carcinoma Cervix" data-caption="TB (2)"
+                  onclick="openModalAuto(this)">
+              </div>
+              <div class="zoom">
+                <img src="./Micro/TB (4).png" alt="Carcinoma Cervix" data-caption="TB (4)"
                   onclick="openModalAuto(this)">
               </div>
             </div>
@@ -320,7 +403,6 @@
         </div>
 
 
-
         <!--card 4-->
         <div class="box-container" data-section="2">
           <div class="titles">
@@ -390,7 +472,6 @@
                 </div>
               </div>
 
-
               <div class="tab-content-wrapper">
                 <div class="tab-content" id="nav-tabContent">
                   <div class="tab-pane active" id="Specimen-2">
@@ -422,7 +503,7 @@
         <!--card 5-->
         <div class="box-container" data-section="2">
           <div class="titles">
-            <h2>Rare</h2>
+            <h2>#BoldePath</h2>
             <div class="label">
               <img src="./images-temp/VM Logo - Copy.jpg" alt="College Logo" class="heading-icon">
               <h2>16Path</h2>
@@ -431,7 +512,7 @@
 
           <div class="img-container">
             <!-- Palette 1 -->
-            
+
 
             <div class="zoom-group" data-group="zoomables-posters-p3">
               <div class="zoom">
@@ -480,19 +561,7 @@
               <div class="tab-content-wrapper">
                 <div class="tab-content" id="nav-tabContent">
                   <div class="tab-pane active" id="Specimen-2">
-                    <ul>
-                      <li><strong>Hashimoto thyroiditis:</strong> Thyroid follicular epithelium shows oncocytic change
-                        and dense lymphocytic infiltration with germinal center.</li>
-                      <li><strong>Papillary thyroid carcinoma:</strong> Complex papillae lined by cuboidal cells with
-                        nuclear clearing, overlapping, crowding and intranuclear grooves, and occasion psammoma bodies.
-                      </li>
-                      <li><strong>Well differentiated thyroid tumor with uncertain malignant potential (low risk
-                          neoplasm):</strong> Well encapsulated, well differentiated tumor with nuclear features of
-                        papillary thyroid carcinoma. No invasion. CK19 positive.</li>
-                      <li><strong>Medullary thyroid carcinoma (Low grade):</strong> Subset 1: Sheets and nests of round
-                        to oval, uniform cells. Subset2: surrounding stroma shows amyloid. </li>
-
-                    </ul>
+                    Rare and/or interesting cases observed by the VMPath team will be posted here from time time.
                   </div>
 
                   <div class="tab-pane" id="Credits-2">
@@ -524,7 +593,6 @@
           on the information provided.</p>
       </div>
     </section>
-
 
     <!-- Image Carousel Modal (matching museum.html) -->
     <div class="modal">
@@ -559,7 +627,6 @@
 
     <div id="footer"></div>
   </div>
-
 
   <script src="Javascript/header.js"></script>
   <!-- <script src="Javascript/navbar.js"></script> -->
