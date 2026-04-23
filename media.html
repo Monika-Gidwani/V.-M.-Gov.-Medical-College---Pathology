@@ -576,6 +576,217 @@
           </div>
         </div>
 
+        <!--card 6-->
+        <div class="box-container" data-section="2">
+          <div class="titles">
+            <h2>#PradeepSpeaks</h2>
+            <div class="label">
+              <img src="./images-temp/VM Logo - Copy.jpg" alt="College Logo" class="heading-icon">
+              <h2>16Path</h2>
+            </div>
+          </div>
+
+          <!-- MCQ Section -->
+          <style>
+            .ps-mcq-wrap {
+              padding: 1rem 1.2rem 1rem;
+            }
+
+            .q {
+              font-weight: 600;
+            }
+
+            .ps-mcq-q {
+              margin-bottom: 1rem;
+              line-height: 1.6;
+              font-size: 0.95rem;
+              text-align: justify;
+              margin: 7px;
+            }
+
+            .ps-options {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+            }
+
+            .mcq-option {
+              position: relative;
+              overflow: hidden;
+              border: 1.5px solid #c8cdd6;
+              border-radius: 8px;
+              padding: 0.6rem 0.9rem;
+              cursor: pointer;
+              background: #f5f6f8;
+              font-size: 0.9rem;
+              color: #333;
+              transition: border-color 0.2s, background 0.2s;
+              user-select: none;
+            }
+
+            .mcq-option:hover {
+              border-color: #14539A;
+              background: #eef2f9;
+            }
+
+            .fill-bar {
+              position: absolute;
+              inset: 0;
+              width: 0%;
+              background: rgba(20, 83, 154, 0.12);
+              transition: width 0.3s ease;
+              border-radius: 8px;
+              pointer-events: none;
+            }
+
+            .mcq-option .opt-label {
+              position: relative;
+              z-index: 1;
+            }
+
+            /* Selected state */
+            .mcq-option.selected {
+              border-color: #14539A;
+              background: #e8eef8;
+            }
+
+            .mcq-option.selected .fill-bar {
+              width: 100%;
+            }
+
+            /* After submit — correct */
+            .mcq-option.correct {
+              border-color: #1a7a1a !important;
+              background: #e6f4e6 !important;
+              color: #155015;
+            }
+
+            .mcq-option.correct .fill-bar {
+              width: 100%;
+              background: rgba(26, 122, 26, 0.15) !important;
+            }
+
+            /* After submit — wrong */
+            .mcq-option.wrong {
+              border-color: #c0392b !important;
+              background: #fdecea !important;
+              color: #922b21;
+            }
+
+            .mcq-option.wrong .fill-bar {
+              width: 100%;
+              background: rgba(192, 57, 43, 0.12) !important;
+            }
+
+            .ps-submit-btn {
+              margin-top: 1rem;
+              padding: 0.45rem 1.3rem;
+              background: #14539A;
+              color: #fff;
+              border: none;
+              border-radius: 6px;
+              cursor: pointer;
+              font-size: 0.9rem;
+              font-family: inherit;
+              transition: background 0.2s;
+            }
+
+            .ps-submit-btn:hover {
+              background: #0e3d74;
+            }
+
+            .ps-submit-btn:disabled {
+              background: #888;
+              cursor: default;
+            }
+
+            .ps-result {
+              margin-top: 0.7rem;
+              font-weight: 600;
+              font-size: 0.92rem;
+              min-height: 1.3rem;
+            }
+          </style>
+
+          <div class="ps-mcq-wrap">
+            <p class="ps-mcq-q"><strong>Q.</strong>
+              An adult male complains of abdominal distension. No history of past or current chest
+              pain. On examination,
+              temperature is 37.1°C, heart rate 78 beats/minute, respiratory rate 16 breaths/minute, and blood pressure
+              115/75&nbsp;mm&nbsp;Hg. Fluid thrill is present. Imaging studies show a small cirrhotic liver and a
+              globally enlarged heart. Which of the following cardiovascular conditions is he most likely to have?
+            </p>
+
+            <div class="ps-options" id="psOptions">
+              <div class="mcq-option" data-value="A" onclick="psSelect(this)">
+                <div class="fill-bar"></div>
+                <span class="opt-label">A.&nbsp; Severe occlusive coronary atherosclerosis</span>
+              </div>
+              <div class="mcq-option" data-value="B" onclick="psSelect(this)">
+                <div class="fill-bar"></div>
+                <span class="opt-label">B.&nbsp; Lymphocytic myocarditis</span>
+              </div>
+              <div class="mcq-option" data-value="C" onclick="psSelect(this)">
+                <div class="fill-bar"></div>
+                <span class="opt-label">C.&nbsp; Dilated cardiomyopathy</span>
+              </div>
+              <div class="mcq-option" data-value="D" onclick="psSelect(this)">
+                <div class="fill-bar"></div>
+                <span class="opt-label">D.&nbsp; Nonbacterial thrombotic endocarditis</span>
+              </div>
+            </div>
+
+            <button class="ps-submit-btn" id="psSubmitBtn" onclick="psSubmit()">Submit</button>
+            <div class="ps-result" id="psResult"></div>
+          </div>
+
+          <script>
+            var _psSelected = null;
+            var _psSubmitted = false;
+
+            function psSelect(el) {
+              if (_psSubmitted) return;
+              document.querySelectorAll('#psOptions .mcq-option').forEach(function (o) {
+                o.classList.remove('selected');
+              });
+              el.classList.add('selected');
+              _psSelected = el.dataset.value;
+            }
+
+            function psSubmit() {
+              if (_psSubmitted) return;
+              var resultEl = document.getElementById('psResult');
+              if (!_psSelected) {
+                resultEl.style.color = '#888';
+                resultEl.textContent = 'Please select an option first.';
+                return;
+              }
+              _psSubmitted = true;
+              document.getElementById('psSubmitBtn').disabled = true;
+
+              var opts = document.querySelectorAll('#psOptions .mcq-option');
+              opts.forEach(function (o) {
+                o.classList.remove('selected');
+                o.style.cursor = 'default';
+                if (o.dataset.value === 'C') {
+                  o.classList.add('correct');
+                } else if (o.dataset.value === _psSelected) {
+                  o.classList.add('wrong');
+                }
+              });
+
+              if (_psSelected === 'C') {
+                resultEl.style.color = '#1a7a1a';
+                resultEl.textContent = 'Correct ✅';
+              } else {
+                resultEl.style.color = '#c0392b';
+                resultEl.textContent = 'Incorrect ❌';
+              }
+            }
+          </script>
+        </div>
+
+
       </div>
     </section>
 
