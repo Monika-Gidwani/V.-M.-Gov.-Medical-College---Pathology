@@ -134,14 +134,12 @@ a,
 }
 
 .img-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.3vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8vw;
     margin-top: 0.5vh;
-    /* reduced: less space between title and content */
-    /* padding: 1vw; */
-    padding-bottom: 1vw;
+    padding: 10px 20px;
+    box-sizing: border-box;
 }
 
 /* .cards {
@@ -292,18 +290,37 @@ a,
    ========================================================= */
 
 
+/* Each zoom-group is a palette slot — fills its grid cell */
+.zoom-group {
+    width: 100%;
+    height: clamp(110px, 13vw, 200px);
+    border: 1.5px solid #999;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: zoom-in;
+    box-sizing: border-box;
+    background: #e0e0e0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+    padding: 4px;
+}
+
 .zoom {
-    display: inline-block;
-    border: 1px solid #ccc;
-    padding: 1vh;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    overflow: hidden;
 }
 
 .zoom img {
-    max-width: clamp(100px, 13vw, 200px);
-    aspect-ratio: 4 / 3;
-    border: 1px solid #ccc;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none;
     cursor: zoom-in;
     transition: transform 0.3s;
+    border-radius: 3px;
 }
 
 .zoom img:hover {
@@ -319,6 +336,23 @@ a,
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* video-box palette — same size and style as image palettes */
+.video-box {
+    width: 100% !important;
+    height: clamp(110px, 13vw, 200px) !important;
+    aspect-ratio: unset !important;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+    padding: 0;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
 }
 
 /* =========================================================
@@ -683,18 +717,9 @@ li a:hover {
         width: clamp(110px, 20vw, 150px);
     }
 
-    .zoom img {
-        max-width: clamp(110px, 20vw, 150px);
-    }
-
-    .video-box {
-        width: clamp(110px, 20vw, 150px);
-    }
 
     .img-container {
-        gap: 2vw;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        gap: 1.5vw;
     }
 
     /* Modal image sizing */
@@ -770,9 +795,7 @@ li a:hover {
 
     /* Image row items: 3-per-row compact tiles on mobile */
     .img-container {
-        gap: 2.5vw;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        gap: 2vw;
     }
 
     .flip-card,
@@ -781,12 +804,10 @@ li a:hover {
         width: clamp(90px, 28vw, 140px);
     }
 
-    .zoom img {
-        max-width: clamp(90px, 28vw, 140px);
-    }
 
+    .zoom-group,
     .video-box {
-        width: clamp(90px, 28vw, 140px);
+        height: clamp(80px, 28vw, 130px);
     }
 
     /* Modal: full-width on mobile */
@@ -868,12 +889,9 @@ li a:hover {
         width: clamp(80px, 11vw, 140px);
     }
 
-    .zoom img {
-        max-width: clamp(80px, 11vw, 140px);
-    }
-
+    .zoom-group,
     .video-box {
-        width: clamp(80px, 11vw, 140px);
+        height: clamp(80px, 11vw, 140px);
     }
 }
 
@@ -881,20 +899,8 @@ li a:hover {
    VIDEO THUMBNAIL CARD
    ========================================================= */
 
-/* Override: video-box is now a clickable thumbnail card */
-.video-box {
-    position: relative;
-    width: clamp(100px, 13vw, 200px);
-    aspect-ratio: 16 / 9;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    overflow: hidden;
-    cursor: pointer;
-    background: #000;
-    /* remove old padding that was for iframes */
-    padding: 0;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+/* Override: video-box is now a clickable thumbnail card
+   (size is now set near .zoom-group to keep all palettes uniform) */
 
 .video-box:hover {
     transform: scale(1.04);
@@ -1038,10 +1044,6 @@ li a:hover {
 
 /* ── Responsive: tablet ────────────────────────────────── */
 @media (min-width: 481px) and (max-width: 767px) {
-    .video-box {
-        width: clamp(110px, 20vw, 160px);
-    }
-
     .video-modal-inner {
         max-width: 96vw;
     }
@@ -1049,10 +1051,6 @@ li a:hover {
 
 /* ── Responsive: mobile ────────────────────────────────── */
 @media (max-width: 480px) {
-    .video-box {
-        width: clamp(90px, 28vw, 140px);
-    }
-
     .video-modal {
         padding: 0.5rem;
         align-items: flex-end;

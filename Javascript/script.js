@@ -91,7 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // ArrowLeft / ArrowRight navigate images when the image modal is open
   window.addEventListener('keydown', e => {
     const imageModalOpen = modal && modal.style.display === 'flex';
-    const videoModalOpen = videoModal && videoModal.style.display === 'flex';
+    // Re-query videoModal by ID each time so we always get the current display state
+    // (openVideoModal uses a local variable, so the outer `videoModal` ref may be stale)
+    const vmEl = document.getElementById('videoModal');
+    const videoModalOpen = vmEl && vmEl.style.display === 'flex';
 
     if (e.key === 'Escape') {
       if (videoModalOpen) {
