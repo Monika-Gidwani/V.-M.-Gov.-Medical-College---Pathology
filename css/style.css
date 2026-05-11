@@ -133,6 +133,13 @@ a,
     object-fit: cover;
 }
 
+/* Center last video if it's alone */
+.img-container .video-box:last-child:nth-child(odd) {
+    grid-column: 1 / -1;   /* span full row */
+    justify-self: center;  /* center horizontally */
+    max-width: 50%;        /* optional: control width */
+}
+
 .img-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
